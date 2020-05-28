@@ -1,0 +1,1412 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>api | @alauda/common-snippet</title>
+	<meta name="description" content="Documentation for @alauda/common-snippet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@alauda/common-snippet</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="api.html">api</a>
+				</li>
+			</ul>
+			<h1>Module api</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<a href="#api-相关功能" id="api-相关功能" style="color: inherit; text-decoration: none;">
+							<h1>API 相关功能</h1>
+						</a>
+						<a href="#api-gateway" id="api-gateway" style="color: inherit; text-decoration: none;">
+							<h2>API Gateway</h2>
+						</a>
+						<a href="#services" id="services" style="color: inherit; text-decoration: none;">
+							<h3>Services</h3>
+						</a>
+						<a href="#apigatewayservice" id="apigatewayservice" style="color: inherit; text-decoration: none;">
+							<h4><code>ApiGatewayService</code></h4>
+						</a>
+						<p>用于在产品初始化时，通过 alauda-console 查询 API Gateway 服务器地址。</p>
+						<a href="#apigatewayinterceptor" id="apigatewayinterceptor" style="color: inherit; text-decoration: none;">
+							<h4><code>ApiGatewayInterceptor</code></h4>
+						</a>
+						<p>默认实现，使用<code>@alauda/common-snippet</code>的项目可选择使用此实现，或者在项目内提供自定义实现，默认实现会自动使用 API Gateway 服务器地址替换<code>{{API_GATEWAY}}</code>开头的 api 中的<code>{{API_GATEWAY}}</code>，同时会给 method 为 <code>PATCH</code> 的请求附加<code>&#39;Content-Type&#39;: &#39;application/merge-patch+json&#39;</code>的 header。</p>
+						<p><strong>因 Angular Interceptor 需要保持合理的顺序才能工作, 需要自行在项目中提供默认实现或自定义实现。</strong></p>
+						<a href="#k8s-资源标准-api" id="k8s-资源标准-api" style="color: inherit; text-decoration: none;">
+							<h2>K8s 资源标准 API</h2>
+						</a>
+						<a href="#services-1" id="services-1" style="color: inherit; text-decoration: none;">
+							<h3>Services</h3>
+						</a>
+						<a href="#k8sapiresourceservice" id="k8sapiresourceservice" style="color: inherit; text-decoration: none;">
+							<h4><code>K8sApiResourceService</code></h4>
+						</a>
+						<p><code>APIResourceList</code> 也是一种 K8s 资源，主要用于根据已有 K8s 资源对象获取其完整的 API 结构信息</p>
+						<ul>
+							<li><code>#getDefinition</code>: 根据 K8s 资源定义类型或非完整定义结构返回完整的 K8s 资源定义结构（<code>K8sResourceDefinition</code>）</li>
+							<li><code>#getApiPath</code>: 根据集群、命名空间、资源类型等参数返回包含 <code>API_GATEWAY</code> 前缀的完整 API url</li>
+							<li><code>#getResourceList</code>: 根据已有的 K8s 资源对象和集群参数返回其对应的 <code>APIResourceItem</code> 数组，包含每个资源类型支持的操作类型 (<code>verbs</code>)</li>
+							<li><code>#getResourceType</code>: 根据已有的 K8s 资源对象和集群参数返回其完整的资源类型名称</li>
+						</ul>
+						<a href="#k8sapiservice" id="k8sapiservice" style="color: inherit; text-decoration: none;">
+							<h4><code>K8sApiService</code></h4>
+						</a>
+						<p>Global/业务集群增删改查 API，不满足标准 API 时请在项目实现相应的高级 API</p>
+						<p>对于写入 API 网络发生错误或者返回异常会自动通知提醒，可以传入 <code>notifyOnError: false</code> 针对性关闭通知提醒；只读 API 默认不会通知，可以传入 <code>notifyOnError: true</code> 针对性打开通知提醒。</p>
+						<a href="#helpers" id="helpers" style="color: inherit; text-decoration: none;">
+							<h3>Helpers</h3>
+						</a>
+						<a href="#createresourcedefinitions" id="createresourcedefinitions" style="color: inherit; text-decoration: none;">
+							<h4><code>createResourceDefinitions</code></h4>
+						</a>
+						<p>用于创建 K8s 资源定义结构（<code>K8sResourceDefinition</code>）的辅助函数，提供更好地类型支持，使用方式参考：<a href="https://bitbucket.org/mathildetech/icarus/src/master/src/app/typings/k8s-resource-definitions.ts">icarus</a></p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>References</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#apibaseparams" class="tsd-kind-icon">Api<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#apidefinitionbaseparams" class="tsd-kind-icon">Api<wbr>Definition<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#apigatewayinterceptor" class="tsd-kind-icon">Api<wbr>Gateway<wbr>Interceptor</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#apigatewayservice" class="tsd-kind-icon">Api<wbr>Gateway<wbr>Service</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#apigatewaystate" class="tsd-kind-icon">Api<wbr>Gateway<wbr>State</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#apitypebaseparams" class="tsd-kind-icon">Api<wbr>Type<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#empty_api_prefix_parts" class="tsd-kind-icon">EMPTY_<wbr>API_<wbr>PREFIX_<wbr>PARTS</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#erebusresourcebaseparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#erebusresourcedeleteparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Delete<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#erebusresourcelistparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>List<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#erebusresourceparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#erebusresourcepatchparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Patch<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#erebusresourcereadparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Read<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#erebusresourcewriteparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Write<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#globalresourcebaseparams" class="tsd-kind-icon">Global<wbr>Resource<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#globalresourcedeleteparams" class="tsd-kind-icon">Global<wbr>Resource<wbr>Delete<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#globalresourcelistparams" class="tsd-kind-icon">Global<wbr>Resource<wbr>List<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#globalresourceparams" class="tsd-kind-icon">Global<wbr>Resource<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#globalresourcepatchparams" class="tsd-kind-icon">Global<wbr>Resource<wbr>Patch<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#globalresourcewriteparams" class="tsd-kind-icon">Global<wbr>Resource<wbr>Write<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#jsonpatch" class="tsd-kind-icon">JSONPatch</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#jsonpatchop" class="tsd-kind-icon">JSONPatch<wbr>Op</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#k8sapiresourceservice" class="tsd-kind-icon">K8s<wbr>Api<wbr>Resource<wbr>Service</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#k8sapiservice" class="tsd-kind-icon">K8s<wbr>Api<wbr>Service</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#k8sresourcedefinition" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Definition</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#k8sresourcedefinitions" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Definitions</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#patchoperation" class="tsd-kind-icon">Patch<wbr>Operation</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#resourceadditionalparams" class="tsd-kind-icon">Resource<wbr>Additional<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#resourceapiparams" class="tsd-kind-icon">Resource<wbr>Api<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#resourcebaseparams" class="tsd-kind-icon">Resource<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#resourcebasepatchparams" class="tsd-kind-icon">Resource<wbr>Base<wbr>Patch<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#resourcebasewriteparams" class="tsd-kind-icon">Resource<wbr>Base<wbr>Write<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#resourcedeleteparams" class="tsd-kind-icon">Resource<wbr>Delete<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#resourcelistbaseparams" class="tsd-kind-icon">Resource<wbr>List<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#resourcelistreadparams" class="tsd-kind-icon">Resource<wbr>List<wbr>Read<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#resourcepatchparams" class="tsd-kind-icon">Resource<wbr>Patch<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#resourcereadparams" class="tsd-kind-icon">Resource<wbr>Read<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#resourcewriteparams" class="tsd-kind-icon">Resource<wbr>Write<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#timeout_seconds" class="tsd-kind-icon">TIMEOUT_<wbr>SECONDS</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#watchapiresponse" class="tsd-kind-icon">WatchAPIResponse</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#watchevent" class="tsd-kind-icon">Watch<wbr>Event</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#createresourcedefinitions" class="tsd-kind-icon">create<wbr>Resource<wbr>Definitions</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#getapiprefixparts" class="tsd-kind-icon">get<wbr>Api<wbr>Prefix<wbr>Parts</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#normalizeapigroup" class="tsd-kind-icon">normalize<wbr>Api<wbr>Group</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="api.html#normalizedefinition" class="tsd-kind-icon">normalize<wbr>Definition</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Enumerations</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/api.jsonpatchop-1.html" class="tsd-kind-icon">JSONPatch<wbr>Op</a></li>
+								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/api.patchoperation-1.html" class="tsd-kind-icon">Patch<wbr>Operation</a></li>
+								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/api.watchevent-1.html" class="tsd-kind-icon">Watch<wbr>Event</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/api.apigatewayinterceptor-1.html" class="tsd-kind-icon">Api<wbr>Gateway<wbr>Interceptor</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/api.apigatewayservice-1.html" class="tsd-kind-icon">Api<wbr>Gateway<wbr>Service</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/api.k8sapiresourceservice-1.html" class="tsd-kind-icon">K8s<wbr>Api<wbr>Resource<wbr>Service</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/api.k8sapiservice-1.html" class="tsd-kind-icon">K8s<wbr>Api<wbr>Service</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/api.apidefinitionbaseparams-1.html" class="tsd-kind-icon">Api<wbr>Definition<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/api.apigatewaystate-1.html" class="tsd-kind-icon">Api<wbr>Gateway<wbr>State</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/api.apitypebaseparams-1.html" class="tsd-kind-icon">Api<wbr>Type<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/api.erebusresourcebaseparams-1.html" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/api.globalresourcebaseparams-1.html" class="tsd-kind-icon">Global<wbr>Resource<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/api.resourceadditionalparams-1.html" class="tsd-kind-icon">Resource<wbr>Additional<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/api.watchapiresponse-1.html" class="tsd-kind-icon">WatchAPIResponse</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#apibaseparams-1" class="tsd-kind-icon">Api<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#erebusresourcedeleteparams-1" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Delete<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#erebusresourcelistparams-1" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>List<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#erebusresourceparams-1" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#erebusresourcepatchparams-1" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Patch<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#erebusresourcereadparams-1" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Read<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#erebusresourcewriteparams-1" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Write<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#globalresourcedeleteparams-1" class="tsd-kind-icon">Global<wbr>Resource<wbr>Delete<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#globalresourcelistparams-1" class="tsd-kind-icon">Global<wbr>Resource<wbr>List<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#globalresourceparams-1" class="tsd-kind-icon">Global<wbr>Resource<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#globalresourcepatchparams-1" class="tsd-kind-icon">Global<wbr>Resource<wbr>Patch<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#globalresourcewriteparams-1" class="tsd-kind-icon">Global<wbr>Resource<wbr>Write<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#jsonpatch-1" class="tsd-kind-icon">JSONPatch</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#k8sresourcedefinition-1" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Definition</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="api.html#k8sresourcedefinitions-1" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Definitions</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#resourceapiparams-1" class="tsd-kind-icon">Resource<wbr>Api<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#resourcebaseparams-1" class="tsd-kind-icon">Resource<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#resourcebasepatchparams-1" class="tsd-kind-icon">Resource<wbr>Base<wbr>Patch<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#resourcebasewriteparams-1" class="tsd-kind-icon">Resource<wbr>Base<wbr>Write<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#resourcedeleteparams-1" class="tsd-kind-icon">Resource<wbr>Delete<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#resourcelistbaseparams-1" class="tsd-kind-icon">Resource<wbr>List<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#resourcelistreadparams-1" class="tsd-kind-icon">Resource<wbr>List<wbr>Read<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#resourcepatchparams-1" class="tsd-kind-icon">Resource<wbr>Patch<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#resourcereadparams-1" class="tsd-kind-icon">Resource<wbr>Read<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#resourcewriteparams-1" class="tsd-kind-icon">Resource<wbr>Write<wbr>Params</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="api.html#empty_api_prefix_parts-1" class="tsd-kind-icon">EMPTY_<wbr>API_<wbr>PREFIX_<wbr>PARTS</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported"><a href="api.html#retry_count" class="tsd-kind-icon">RETRY_<wbr>COUNT</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="api.html#timeout_seconds-1" class="tsd-kind-icon">TIMEOUT_<wbr>SECONDS</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#createresourcedefinitions-1" class="tsd-kind-icon">create<wbr>Resource<wbr>Definitions</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="api.html#getapiprefixparts-1" class="tsd-kind-icon">get<wbr>Api<wbr>Prefix<wbr>Parts</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported"><a href="api.html#isdefinition" class="tsd-kind-icon">is<wbr>Definition</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="api.html#normalizeapigroup-1" class="tsd-kind-icon">normalize<wbr>Api<wbr>Group</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="api.html#normalizedefinition-1" class="tsd-kind-icon">normalize<wbr>Definition</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>References</h2>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="apibaseparams" class="tsd-anchor"></a>
+					<h3>Api<wbr>Base<wbr>Params</h3>
+					Re-exports <a href="api.html#apibaseparams-1">ApiBaseParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="apidefinitionbaseparams" class="tsd-anchor"></a>
+					<h3>Api<wbr>Definition<wbr>Base<wbr>Params</h3>
+					Re-exports <a href="../interfaces/api.apidefinitionbaseparams-1.html">ApiDefinitionBaseParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="apigatewayinterceptor" class="tsd-anchor"></a>
+					<h3>Api<wbr>Gateway<wbr>Interceptor</h3>
+					Re-exports <a href="../classes/api.apigatewayinterceptor-1.html">ApiGatewayInterceptor</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="apigatewayservice" class="tsd-anchor"></a>
+					<h3>Api<wbr>Gateway<wbr>Service</h3>
+					Re-exports <a href="../classes/api.apigatewayservice-1.html">ApiGatewayService</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="apigatewaystate" class="tsd-anchor"></a>
+					<h3>Api<wbr>Gateway<wbr>State</h3>
+					Re-exports <a href="../interfaces/api.apigatewaystate-1.html">ApiGatewayState</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="apitypebaseparams" class="tsd-anchor"></a>
+					<h3>Api<wbr>Type<wbr>Base<wbr>Params</h3>
+					Re-exports <a href="../interfaces/api.apitypebaseparams-1.html">ApiTypeBaseParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="empty_api_prefix_parts" class="tsd-anchor"></a>
+					<h3>EMPTY_<wbr>API_<wbr>PREFIX_<wbr>PARTS</h3>
+					Re-exports <a href="api.html#empty_api_prefix_parts-1">EMPTY_API_PREFIX_PARTS</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="erebusresourcebaseparams" class="tsd-anchor"></a>
+					<h3>Erebus<wbr>Resource<wbr>Base<wbr>Params</h3>
+					Re-exports <a href="../interfaces/api.erebusresourcebaseparams-1.html">ErebusResourceBaseParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="erebusresourcedeleteparams" class="tsd-anchor"></a>
+					<h3>Erebus<wbr>Resource<wbr>Delete<wbr>Params</h3>
+					Re-exports <a href="api.html#erebusresourcedeleteparams-1">ErebusResourceDeleteParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="erebusresourcelistparams" class="tsd-anchor"></a>
+					<h3>Erebus<wbr>Resource<wbr>List<wbr>Params</h3>
+					Re-exports <a href="api.html#erebusresourcelistparams-1">ErebusResourceListParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="erebusresourceparams" class="tsd-anchor"></a>
+					<h3>Erebus<wbr>Resource<wbr>Params</h3>
+					Re-exports <a href="api.html#erebusresourceparams-1">ErebusResourceParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="erebusresourcepatchparams" class="tsd-anchor"></a>
+					<h3>Erebus<wbr>Resource<wbr>Patch<wbr>Params</h3>
+					Re-exports <a href="api.html#erebusresourcepatchparams-1">ErebusResourcePatchParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="erebusresourcereadparams" class="tsd-anchor"></a>
+					<h3>Erebus<wbr>Resource<wbr>Read<wbr>Params</h3>
+					Re-exports <a href="api.html#erebusresourcereadparams-1">ErebusResourceReadParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="erebusresourcewriteparams" class="tsd-anchor"></a>
+					<h3>Erebus<wbr>Resource<wbr>Write<wbr>Params</h3>
+					Re-exports <a href="api.html#erebusresourcewriteparams-1">ErebusResourceWriteParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="globalresourcebaseparams" class="tsd-anchor"></a>
+					<h3>Global<wbr>Resource<wbr>Base<wbr>Params</h3>
+					Re-exports <a href="../interfaces/api.globalresourcebaseparams-1.html">GlobalResourceBaseParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="globalresourcedeleteparams" class="tsd-anchor"></a>
+					<h3>Global<wbr>Resource<wbr>Delete<wbr>Params</h3>
+					Re-exports <a href="api.html#globalresourcedeleteparams-1">GlobalResourceDeleteParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="globalresourcelistparams" class="tsd-anchor"></a>
+					<h3>Global<wbr>Resource<wbr>List<wbr>Params</h3>
+					Re-exports <a href="api.html#globalresourcelistparams-1">GlobalResourceListParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="globalresourceparams" class="tsd-anchor"></a>
+					<h3>Global<wbr>Resource<wbr>Params</h3>
+					Re-exports <a href="api.html#globalresourceparams-1">GlobalResourceParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="globalresourcepatchparams" class="tsd-anchor"></a>
+					<h3>Global<wbr>Resource<wbr>Patch<wbr>Params</h3>
+					Re-exports <a href="api.html#globalresourcepatchparams-1">GlobalResourcePatchParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="globalresourcewriteparams" class="tsd-anchor"></a>
+					<h3>Global<wbr>Resource<wbr>Write<wbr>Params</h3>
+					Re-exports <a href="api.html#globalresourcewriteparams-1">GlobalResourceWriteParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="jsonpatch" class="tsd-anchor"></a>
+					<h3>JSONPatch</h3>
+					Re-exports <a href="api.html#jsonpatch-1">JSONPatch</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="jsonpatchop" class="tsd-anchor"></a>
+					<h3>JSONPatch<wbr>Op</h3>
+					Re-exports <a href="../enums/api.jsonpatchop-1.html">JSONPatchOp</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8sapiresourceservice" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Api<wbr>Resource<wbr>Service</h3>
+					Re-exports <a href="../classes/api.k8sapiresourceservice-1.html">K8sApiResourceService</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8sapiservice" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Api<wbr>Service</h3>
+					Re-exports <a href="../classes/api.k8sapiservice-1.html">K8sApiService</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8sresourcedefinition" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Resource<wbr>Definition</h3>
+					Re-exports <a href="api.html#k8sresourcedefinition-1">K8sResourceDefinition</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8sresourcedefinitions" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Resource<wbr>Definitions</h3>
+					Re-exports <a href="api.html#k8sresourcedefinitions-1">K8sResourceDefinitions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="patchoperation" class="tsd-anchor"></a>
+					<h3>Patch<wbr>Operation</h3>
+					Re-exports <a href="../enums/api.patchoperation-1.html">PatchOperation</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="resourceadditionalparams" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Additional<wbr>Params</h3>
+					Re-exports <a href="../interfaces/api.resourceadditionalparams-1.html">ResourceAdditionalParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="resourceapiparams" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Api<wbr>Params</h3>
+					Re-exports <a href="api.html#resourceapiparams-1">ResourceApiParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="resourcebaseparams" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Base<wbr>Params</h3>
+					Re-exports <a href="api.html#resourcebaseparams-1">ResourceBaseParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="resourcebasepatchparams" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Base<wbr>Patch<wbr>Params</h3>
+					Re-exports <a href="api.html#resourcebasepatchparams-1">ResourceBasePatchParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="resourcebasewriteparams" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Base<wbr>Write<wbr>Params</h3>
+					Re-exports <a href="api.html#resourcebasewriteparams-1">ResourceBaseWriteParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="resourcedeleteparams" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Delete<wbr>Params</h3>
+					Re-exports <a href="api.html#resourcedeleteparams-1">ResourceDeleteParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="resourcelistbaseparams" class="tsd-anchor"></a>
+					<h3>Resource<wbr>List<wbr>Base<wbr>Params</h3>
+					Re-exports <a href="api.html#resourcelistbaseparams-1">ResourceListBaseParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="resourcelistreadparams" class="tsd-anchor"></a>
+					<h3>Resource<wbr>List<wbr>Read<wbr>Params</h3>
+					Re-exports <a href="api.html#resourcelistreadparams-1">ResourceListReadParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="resourcepatchparams" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Patch<wbr>Params</h3>
+					Re-exports <a href="api.html#resourcepatchparams-1">ResourcePatchParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="resourcereadparams" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Read<wbr>Params</h3>
+					Re-exports <a href="api.html#resourcereadparams-1">ResourceReadParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="resourcewriteparams" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Write<wbr>Params</h3>
+					Re-exports <a href="api.html#resourcewriteparams-1">ResourceWriteParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="timeout_seconds" class="tsd-anchor"></a>
+					<h3>TIMEOUT_<wbr>SECONDS</h3>
+					Re-exports <a href="api.html#timeout_seconds-1">TIMEOUT_SECONDS</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="watchapiresponse" class="tsd-anchor"></a>
+					<h3>WatchAPIResponse</h3>
+					Re-exports <a href="../interfaces/api.watchapiresponse-1.html">WatchAPIResponse</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="watchevent" class="tsd-anchor"></a>
+					<h3>Watch<wbr>Event</h3>
+					Re-exports <a href="../enums/api.watchevent-1.html">WatchEvent</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="createresourcedefinitions" class="tsd-anchor"></a>
+					<h3>create<wbr>Resource<wbr>Definitions</h3>
+					Re-exports <a href="api.html#createresourcedefinitions-1">createResourceDefinitions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="getapiprefixparts" class="tsd-anchor"></a>
+					<h3>get<wbr>Api<wbr>Prefix<wbr>Parts</h3>
+					Re-exports <a href="api.html#getapiprefixparts-1">getApiPrefixParts</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="normalizeapigroup" class="tsd-anchor"></a>
+					<h3>normalize<wbr>Api<wbr>Group</h3>
+					Re-exports <a href="api.html#normalizeapigroup-1">normalizeApiGroup</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="normalizedefinition" class="tsd-anchor"></a>
+					<h3>normalize<wbr>Definition</h3>
+					Re-exports <a href="api.html#normalizedefinition-1">normalizeDefinition</a>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="apibaseparams-1" class="tsd-anchor"></a>
+					<h3>Api<wbr>Base<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Api<wbr>Base<wbr>Params&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>notifyOnError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.apidefinitionbaseparams-1.html" class="tsd-signature-type">ApiDefinitionBaseParams</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/api.apitypebaseparams-1.html" class="tsd-signature-type">ApiTypeBaseParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:30</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="erebusresourcedeleteparams-1" class="tsd-anchor"></a>
+					<h3>Erebus<wbr>Resource<wbr>Delete<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Erebus<wbr>Resource<wbr>Delete<wbr>Params&lt;T, R&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">{ </span>notifyOnError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.apidefinitionbaseparams-1.html" class="tsd-signature-type">ApiDefinitionBaseParams</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.erebusresourcebaseparams-1.html" class="tsd-signature-type">ErebusResourceBaseParams</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">{ </span>notifyOnError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.apidefinitionbaseparams-1.html" class="tsd-signature-type">ApiDefinitionBaseParams</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>resource<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.erebusresourcebaseparams-1.html" class="tsd-signature-type">ErebusResourceBaseParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">{ </span>notifyOnError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.apitypebaseparams-1.html" class="tsd-signature-type">ApiTypeBaseParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>resource<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.erebusresourcebaseparams-1.html" class="tsd-signature-type">ErebusResourceBaseParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">{ </span>notifyOnError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.apitypebaseparams-1.html" class="tsd-signature-type">ApiTypeBaseParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.erebusresourcebaseparams-1.html" class="tsd-signature-type">ErebusResourceBaseParams</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.resourceadditionalparams-1.html" class="tsd-signature-type">ResourceAdditionalParams</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:126</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="erebusresourcelistparams-1" class="tsd-anchor"></a>
+					<h3>Erebus<wbr>Resource<wbr>List<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Erebus<wbr>Resource<wbr>List<wbr>Params&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#resourcelistbaseparams" class="tsd-signature-type">ResourceListBaseParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="api.html#erebusresourcereadparams" class="tsd-signature-type">ErebusResourceReadParams</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:65</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="erebusresourceparams-1" class="tsd-anchor"></a>
+					<h3>Erebus<wbr>Resource<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Erebus<wbr>Resource<wbr>Params&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#resourcebaseparams" class="tsd-signature-type">ResourceBaseParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="api.html#erebusresourcereadparams" class="tsd-signature-type">ErebusResourceReadParams</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:62</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="erebusresourcepatchparams-1" class="tsd-anchor"></a>
+					<h3>Erebus<wbr>Resource<wbr>Patch<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Erebus<wbr>Resource<wbr>Patch<wbr>Params&lt;T, R&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#resourcebasepatchparams" class="tsd-signature-type">ResourceBasePatchParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.erebusresourcebaseparams-1.html" class="tsd-signature-type">ErebusResourceBaseParams</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:121</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="erebusresourcereadparams-1" class="tsd-anchor"></a>
+					<h3>Erebus<wbr>Resource<wbr>Read<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Erebus<wbr>Resource<wbr>Read<wbr>Params<span class="tsd-signature-symbol">:</span> <a href="../interfaces/api.erebusresourcebaseparams-1.html" class="tsd-signature-type">ErebusResourceBaseParams</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:58</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="erebusresourcewriteparams-1" class="tsd-anchor"></a>
+					<h3>Erebus<wbr>Resource<wbr>Write<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Erebus<wbr>Resource<wbr>Write<wbr>Params&lt;T, R&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#resourcebasewriteparams" class="tsd-signature-type">ResourceBaseWriteParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.erebusresourcebaseparams-1.html" class="tsd-signature-type">ErebusResourceBaseParams</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:116</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="globalresourcedeleteparams-1" class="tsd-anchor"></a>
+					<h3>Global<wbr>Resource<wbr>Delete<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Global<wbr>Resource<wbr>Delete<wbr>Params&lt;T, R&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">{ </span>notifyOnError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.apidefinitionbaseparams-1.html" class="tsd-signature-type">ApiDefinitionBaseParams</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.globalresourcebaseparams-1.html" class="tsd-signature-type">GlobalResourceBaseParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">{ </span>notifyOnError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.apidefinitionbaseparams-1.html" class="tsd-signature-type">ApiDefinitionBaseParams</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>resource<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.globalresourcebaseparams-1.html" class="tsd-signature-type">GlobalResourceBaseParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">{ </span>notifyOnError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.apitypebaseparams-1.html" class="tsd-signature-type">ApiTypeBaseParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>resource<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.globalresourcebaseparams-1.html" class="tsd-signature-type">GlobalResourceBaseParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">{ </span>notifyOnError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.apitypebaseparams-1.html" class="tsd-signature-type">ApiTypeBaseParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.globalresourcebaseparams-1.html" class="tsd-signature-type">GlobalResourceBaseParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.resourceadditionalparams-1.html" class="tsd-signature-type">ResourceAdditionalParams</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:110</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="globalresourcelistparams-1" class="tsd-anchor"></a>
+					<h3>Global<wbr>Resource<wbr>List<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Global<wbr>Resource<wbr>List<wbr>Params&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#resourcelistbaseparams" class="tsd-signature-type">ResourceListBaseParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.globalresourcebaseparams-1.html" class="tsd-signature-type">GlobalResourceBaseParams</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:49</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="globalresourceparams-1" class="tsd-anchor"></a>
+					<h3>Global<wbr>Resource<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Global<wbr>Resource<wbr>Params&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#resourcebaseparams" class="tsd-signature-type">ResourceBaseParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.globalresourcebaseparams-1.html" class="tsd-signature-type">GlobalResourceBaseParams</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:46</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="globalresourcepatchparams-1" class="tsd-anchor"></a>
+					<h3>Global<wbr>Resource<wbr>Patch<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Global<wbr>Resource<wbr>Patch<wbr>Params&lt;T, R&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#resourcebasepatchparams" class="tsd-signature-type">ResourceBasePatchParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.globalresourcebaseparams-1.html" class="tsd-signature-type">GlobalResourceBaseParams</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:105</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="globalresourcewriteparams-1" class="tsd-anchor"></a>
+					<h3>Global<wbr>Resource<wbr>Write<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Global<wbr>Resource<wbr>Write<wbr>Params&lt;T, R&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#resourcebasewriteparams" class="tsd-signature-type">ResourceBaseWriteParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/api.globalresourcebaseparams-1.html" class="tsd-signature-type">GlobalResourceBaseParams</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:100</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="jsonpatch-1" class="tsd-anchor"></a>
+					<h3>JSONPatch</h3>
+					<div class="tsd-signature tsd-kind-icon">JSONPatch<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>op<span class="tsd-signature-symbol">: </span><a href="../enums/api.jsonpatchop-1.html#test" class="tsd-signature-type">Test</a><span class="tsd-signature-symbol"> | </span><a href="../enums/api.jsonpatchop-1.html#add" class="tsd-signature-type">Add</a><span class="tsd-signature-symbol"> | </span><a href="../enums/api.jsonpatchop-1.html#replace" class="tsd-signature-type">Replace</a><span class="tsd-signature-symbol">; </span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>op<span class="tsd-signature-symbol">: </span><a href="../enums/api.jsonpatchop-1.html#remove" class="tsd-signature-type">Remove</a><span class="tsd-signature-symbol">; </span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>from<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>op<span class="tsd-signature-symbol">: </span><a href="../enums/api.jsonpatchop-1.html#move" class="tsd-signature-type">Move</a><span class="tsd-signature-symbol"> | </span><a href="../enums/api.jsonpatchop-1.html#copy" class="tsd-signature-type">Copy</a><span class="tsd-signature-symbol">; </span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:172</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="k8sresourcedefinition-1" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Resource<wbr>Definition</h3>
+					<div class="tsd-signature tsd-kind-icon">K8s<wbr>Resource<wbr>Definition<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>apiGroup<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>apiVersion<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:12</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="k8sresourcedefinitions-1" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Resource<wbr>Definitions</h3>
+					<div class="tsd-signature tsd-kind-icon">K8s<wbr>Resource<wbr>Definitions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="api.html#k8sresourcedefinition" class="tsd-signature-type">K8sResourceDefinition</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:18</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="resourceapiparams-1" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Api<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Resource<wbr>Api<wbr>Params&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#globalresourcelistparams" class="tsd-signature-type">GlobalResourceListParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="api.html#erebusresourcelistparams" class="tsd-signature-type">ErebusResourceListParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="api.html#resourcereadparams" class="tsd-signature-type">ResourceReadParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="api.html#resourcewriteparams" class="tsd-signature-type">ResourceWriteParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="api.html#resourcepatchparams" class="tsd-signature-type">ResourcePatchParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="api.html#resourcedeleteparams" class="tsd-signature-type">ResourceDeleteParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:147</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="resourcebaseparams-1" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Base<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Resource<wbr>Base<wbr>Params&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#apibaseparams" class="tsd-signature-type">ApiBaseParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:34</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="resourcebasepatchparams-1" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Base<wbr>Patch<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Resource<wbr>Base<wbr>Patch<wbr>Params&lt;T, R&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#resourcebasewriteparams" class="tsd-signature-type">ResourceBaseWriteParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>operation<span class="tsd-signature-symbol">?: </span><a href="../enums/api.patchoperation-1.html" class="tsd-signature-type">PatchOperation</a><span class="tsd-signature-symbol">; </span>part<span class="tsd-signature-symbol">: </span><a href="types.html#deeppartial" class="tsd-signature-type">DeepPartial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="api.html#jsonpatch" class="tsd-signature-type">JSONPatch</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:88</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>patch 资源时需要传递完整的原始资源 (resource) 和更新的部分 (part)</p>
+						</div>
+					</div>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="resourcebasewriteparams-1" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Base<wbr>Write<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Resource<wbr>Base<wbr>Write<wbr>Params&lt;T, R&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#apibaseparams" class="tsd-signature-type">ApiBaseParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>resource<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:78</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="resourcedeleteparams-1" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Delete<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Resource<wbr>Delete<wbr>Params&lt;R, T&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#globalresourcedeleteparams" class="tsd-signature-type">GlobalResourceDeleteParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="api.html#erebusresourcedeleteparams" class="tsd-signature-type">ErebusResourceDeleteParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:142</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="resourcelistbaseparams-1" class="tsd-anchor"></a>
+					<h3>Resource<wbr>List<wbr>Base<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Resource<wbr>List<wbr>Base<wbr>Params&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#apibaseparams" class="tsd-signature-type">ApiBaseParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>queryParams<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.resourcelistparams-1.html" class="tsd-signature-type">ResourceListParams</a><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:38</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="resourcelistreadparams-1" class="tsd-anchor"></a>
+					<h3>Resource<wbr>List<wbr>Read<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Resource<wbr>List<wbr>Read<wbr>Params&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#globalresourcelistparams" class="tsd-signature-type">GlobalResourceListParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="api.html#erebusresourcelistparams" class="tsd-signature-type">ErebusResourceListParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:74</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="resourcepatchparams-1" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Patch<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Resource<wbr>Patch<wbr>Params&lt;R, T&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#globalresourcepatchparams" class="tsd-signature-type">GlobalResourcePatchParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="api.html#erebusresourcepatchparams" class="tsd-signature-type">ErebusResourcePatchParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:137</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="resourcereadparams-1" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Read<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Resource<wbr>Read<wbr>Params&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#globalresourceparams" class="tsd-signature-type">GlobalResourceParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="api.html#erebusresourceparams" class="tsd-signature-type">ErebusResourceParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:70</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="resourcewriteparams-1" class="tsd-anchor"></a>
+					<h3>Resource<wbr>Write<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">Resource<wbr>Write<wbr>Params&lt;R, T&gt;<span class="tsd-signature-symbol">:</span> <a href="api.html#globalresourcewriteparams" class="tsd-signature-type">GlobalResourceWriteParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="api.html#erebusresourcewriteparams" class="tsd-signature-type">ErebusResourceWriteParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/types.ts:132</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+						</li>
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="empty_api_prefix_parts-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> EMPTY_<wbr>API_<wbr>PREFIX_<wbr>PARTS</h3>
+					<div class="tsd-signature tsd-kind-icon">EMPTY_<wbr>API_<wbr>PREFIX_<wbr>PARTS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>apiGroup<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">""</span><span class="tsd-signature-symbol">; </span>apiVersion<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">""</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> = {apiGroup: &#x27;&#x27;,apiVersion: &#x27;&#x27;,} as const</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/helpers.ts:11</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>api<wbr>Group<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">""</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>api<wbr>Version<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">""</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
+					<a name="retry_count" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> RETRY_<wbr>COUNT</h3>
+					<div class="tsd-signature tsd-kind-icon">RETRY_<wbr>COUNT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">3</span><span class="tsd-signature-symbol"> = 3</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/api-gateway.service.ts:19</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="timeout_seconds-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> TIMEOUT_<wbr>SECONDS</h3>
+					<div class="tsd-signature tsd-kind-icon">TIMEOUT_<wbr>SECONDS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">59</span><span class="tsd-signature-symbol"> = 59</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/api/k8s-api.service.ts:60</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="createresourcedefinitions-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> create<wbr>Resource<wbr>Definitions</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Resource<wbr>Definitions&lt;T, R&gt;<span class="tsd-signature-symbol">(</span>RESOURCE_DEFINITIONS<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/api/helpers.ts:46</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><a href="api.html#k8sresourcedefinitions" class="tsd-signature-type">K8sResourceDefinitions</a></h4>
+								</li>
+								<li>
+									<h4>R<span class="tsd-signature-symbol">: </span><a href="types.html#deepreadonly" class="tsd-signature-type">DeepReadonly</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>RESOURCE_DEFINITIONS<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">; </span>RESOURCE_TYPES<span class="tsd-signature-symbol">: </span><a href="types.html#keys-1" class="tsd-signature-type">Keys</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>getYamlApiVersion<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>definition<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><a href="types.html#valueof" class="tsd-signature-type">ValueOf</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>RESOURCE_DEFINITIONS: <span class="tsd-signature-type">T</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">R</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="getapiprefixparts-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Api<wbr>Prefix<wbr>Parts</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Api<wbr>Prefix<wbr>Parts<span class="tsd-signature-symbol">(</span>apiPrefix<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#k8sresourcedefinition" class="tsd-signature-type">K8sResourceDefinition</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"type"</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/api/helpers.ts:16</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>apiPrefix: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="api.html#k8sresourcedefinition" class="tsd-signature-type">K8sResourceDefinition</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"type"</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
+					<a name="isdefinition" class="tsd-anchor"></a>
+					<h3>is<wbr>Definition</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Definition&lt;T&gt;<span class="tsd-signature-symbol">(</span>definition<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><a href="types.html#valueof" class="tsd-signature-type">ValueOf</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">definition</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">ValueOf</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/api/helpers.ts:40</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><a href="api.html#k8sresourcedefinitions" class="tsd-signature-type">K8sResourceDefinitions</a></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>definition: <span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><a href="types.html#valueof" class="tsd-signature-type">ValueOf</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">definition</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">ValueOf</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="normalizeapigroup-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> normalize<wbr>Api<wbr>Group</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">normalize<wbr>Api<wbr>Group<span class="tsd-signature-symbol">(</span>apiGroup<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/api/helpers.ts:28</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> apiGroup: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="normalizedefinition-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> normalize<wbr>Definition</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">normalize<wbr>Definition&lt;T&gt;<span class="tsd-signature-symbol">(</span>definition<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/api/helpers.ts:31</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><a href="api.html#k8sresourcedefinition" class="tsd-signature-type">K8sResourceDefinition</a></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>definition: <span class="tsd-signature-type">T</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="api.html">api</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#apibaseparams" class="tsd-kind-icon">Api<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#apidefinitionbaseparams" class="tsd-kind-icon">Api<wbr>Definition<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#apigatewayinterceptor" class="tsd-kind-icon">Api<wbr>Gateway<wbr>Interceptor</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#apigatewayservice" class="tsd-kind-icon">Api<wbr>Gateway<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#apigatewaystate" class="tsd-kind-icon">Api<wbr>Gateway<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#apitypebaseparams" class="tsd-kind-icon">Api<wbr>Type<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#empty_api_prefix_parts" class="tsd-kind-icon">EMPTY_<wbr>API_<wbr>PREFIX_<wbr>PARTS</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#erebusresourcebaseparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#erebusresourcedeleteparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Delete<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#erebusresourcelistparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>List<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#erebusresourceparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#erebusresourcepatchparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Patch<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#erebusresourcereadparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Read<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#erebusresourcewriteparams" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Write<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#globalresourcebaseparams" class="tsd-kind-icon">Global<wbr>Resource<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#globalresourcedeleteparams" class="tsd-kind-icon">Global<wbr>Resource<wbr>Delete<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#globalresourcelistparams" class="tsd-kind-icon">Global<wbr>Resource<wbr>List<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#globalresourceparams" class="tsd-kind-icon">Global<wbr>Resource<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#globalresourcepatchparams" class="tsd-kind-icon">Global<wbr>Resource<wbr>Patch<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#globalresourcewriteparams" class="tsd-kind-icon">Global<wbr>Resource<wbr>Write<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#jsonpatch" class="tsd-kind-icon">JSONPatch</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#jsonpatchop" class="tsd-kind-icon">JSONPatch<wbr>Op</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#k8sapiresourceservice" class="tsd-kind-icon">K8s<wbr>Api<wbr>Resource<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#k8sapiservice" class="tsd-kind-icon">K8s<wbr>Api<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#k8sresourcedefinition" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Definition</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#k8sresourcedefinitions" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Definitions</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#patchoperation" class="tsd-kind-icon">Patch<wbr>Operation</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#resourceadditionalparams" class="tsd-kind-icon">Resource<wbr>Additional<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#resourceapiparams" class="tsd-kind-icon">Resource<wbr>Api<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#resourcebaseparams" class="tsd-kind-icon">Resource<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#resourcebasepatchparams" class="tsd-kind-icon">Resource<wbr>Base<wbr>Patch<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#resourcebasewriteparams" class="tsd-kind-icon">Resource<wbr>Base<wbr>Write<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#resourcedeleteparams" class="tsd-kind-icon">Resource<wbr>Delete<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#resourcelistbaseparams" class="tsd-kind-icon">Resource<wbr>List<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#resourcelistreadparams" class="tsd-kind-icon">Resource<wbr>List<wbr>Read<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#resourcepatchparams" class="tsd-kind-icon">Resource<wbr>Patch<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#resourcereadparams" class="tsd-kind-icon">Resource<wbr>Read<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#resourcewriteparams" class="tsd-kind-icon">Resource<wbr>Write<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#timeout_seconds" class="tsd-kind-icon">TIMEOUT_<wbr>SECONDS</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#watchapiresponse" class="tsd-kind-icon">WatchAPIResponse</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#watchevent" class="tsd-kind-icon">Watch<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#createresourcedefinitions" class="tsd-kind-icon">create<wbr>Resource<wbr>Definitions</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#getapiprefixparts" class="tsd-kind-icon">get<wbr>Api<wbr>Prefix<wbr>Parts</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#normalizeapigroup" class="tsd-kind-icon">normalize<wbr>Api<wbr>Group</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="api.html#normalizedefinition" class="tsd-kind-icon">normalize<wbr>Definition</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="../enums/api.jsonpatchop-1.html" class="tsd-kind-icon">JSONPatch<wbr>Op</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="../enums/api.patchoperation-1.html" class="tsd-kind-icon">Patch<wbr>Operation</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="../enums/api.watchevent-1.html" class="tsd-kind-icon">Watch<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/api.apigatewayinterceptor-1.html" class="tsd-kind-icon">Api<wbr>Gateway<wbr>Interceptor</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/api.apigatewayservice-1.html" class="tsd-kind-icon">Api<wbr>Gateway<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/api.k8sapiresourceservice-1.html" class="tsd-kind-icon">K8s<wbr>Api<wbr>Resource<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../classes/api.k8sapiservice-1.html" class="tsd-kind-icon">K8s<wbr>Api<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/api.apidefinitionbaseparams-1.html" class="tsd-kind-icon">Api<wbr>Definition<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/api.apigatewaystate-1.html" class="tsd-kind-icon">Api<wbr>Gateway<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/api.apitypebaseparams-1.html" class="tsd-kind-icon">Api<wbr>Type<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/api.erebusresourcebaseparams-1.html" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/api.globalresourcebaseparams-1.html" class="tsd-kind-icon">Global<wbr>Resource<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/api.resourceadditionalparams-1.html" class="tsd-kind-icon">Resource<wbr>Additional<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/api.watchapiresponse-1.html" class="tsd-kind-icon">WatchAPIResponse</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#apibaseparams-1" class="tsd-kind-icon">Api<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#erebusresourcedeleteparams-1" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Delete<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#erebusresourcelistparams-1" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>List<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#erebusresourceparams-1" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#erebusresourcepatchparams-1" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Patch<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#erebusresourcereadparams-1" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Read<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#erebusresourcewriteparams-1" class="tsd-kind-icon">Erebus<wbr>Resource<wbr>Write<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#globalresourcedeleteparams-1" class="tsd-kind-icon">Global<wbr>Resource<wbr>Delete<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#globalresourcelistparams-1" class="tsd-kind-icon">Global<wbr>Resource<wbr>List<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#globalresourceparams-1" class="tsd-kind-icon">Global<wbr>Resource<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#globalresourcepatchparams-1" class="tsd-kind-icon">Global<wbr>Resource<wbr>Patch<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#globalresourcewriteparams-1" class="tsd-kind-icon">Global<wbr>Resource<wbr>Write<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#jsonpatch-1" class="tsd-kind-icon">JSONPatch</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#k8sresourcedefinition-1" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Definition</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="api.html#k8sresourcedefinitions-1" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Definitions</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#resourceapiparams-1" class="tsd-kind-icon">Resource<wbr>Api<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#resourcebaseparams-1" class="tsd-kind-icon">Resource<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#resourcebasepatchparams-1" class="tsd-kind-icon">Resource<wbr>Base<wbr>Patch<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#resourcebasewriteparams-1" class="tsd-kind-icon">Resource<wbr>Base<wbr>Write<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#resourcedeleteparams-1" class="tsd-kind-icon">Resource<wbr>Delete<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#resourcelistbaseparams-1" class="tsd-kind-icon">Resource<wbr>List<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#resourcelistreadparams-1" class="tsd-kind-icon">Resource<wbr>List<wbr>Read<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#resourcepatchparams-1" class="tsd-kind-icon">Resource<wbr>Patch<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#resourcereadparams-1" class="tsd-kind-icon">Resource<wbr>Read<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#resourcewriteparams-1" class="tsd-kind-icon">Resource<wbr>Write<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="api.html#empty_api_prefix_parts-1" class="tsd-kind-icon">EMPTY_<wbr>API_<wbr>PREFIX_<wbr>PARTS</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
+						<a href="api.html#retry_count" class="tsd-kind-icon">RETRY_<wbr>COUNT</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="api.html#timeout_seconds-1" class="tsd-kind-icon">TIMEOUT_<wbr>SECONDS</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#createresourcedefinitions-1" class="tsd-kind-icon">create<wbr>Resource<wbr>Definitions</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="api.html#getapiprefixparts-1" class="tsd-kind-icon">get<wbr>Api<wbr>Prefix<wbr>Parts</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="api.html#isdefinition" class="tsd-kind-icon">is<wbr>Definition</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="api.html#normalizeapigroup-1" class="tsd-kind-icon">normalize<wbr>Api<wbr>Group</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="api.html#normalizedefinition-1" class="tsd-kind-icon">normalize<wbr>Definition</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

@@ -1,0 +1,2558 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>translate | @alauda/common-snippet</title>
+	<meta name="description" content="Documentation for @alauda/common-snippet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@alauda/common-snippet</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="translate.html">translate</a>
+				</li>
+			</ul>
+			<h1>Module translate</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<a href="#翻译模块" id="翻译模块" style="color: inherit; text-decoration: none;">
+							<h1>翻译模块</h1>
+						</a>
+						<a href="#基本类型" id="基本类型" style="color: inherit; text-decoration: none;">
+							<h2>基本类型</h2>
+						</a>
+						<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Translation {
+  [key: <span class="hljs-built_in">string</span>]: Arrayable&lt;<span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span> | <span class="hljs-built_in">boolean</span> | Translation&gt;;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> Translations = Partial&lt;Record&lt;Locale, Translation&gt;&gt;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> TranslateKey = <span class="hljs-built_in">string</span> | Partial&lt;Record&lt;Locale, <span class="hljs-built_in">string</span>&gt;&gt;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> TranslateOptions {
+  locale?: Locale; <span class="hljs-comment">// 当前区域，默认从 localStorage 或浏览器默认设置中获取</span>
+  defaultLocale?: Locale; <span class="hljs-comment">// 解析翻译时如果当前区域未找到，继续回退尝试的区域</span>
+  locales?: Locale[]; <span class="hljs-comment">// 可用区域列表，调用 `toggleLocale` 时自动滚动循环设置区域</span>
+  translations?: Translations; <span class="hljs-comment">// 初始翻译包</span>
+  loose?: <span class="hljs-built_in">boolean</span>; <span class="hljs-comment">// 是否启用宽松模式，如果当前区域找不到翻译时回退尝试国家区域，即 `zh-* -&gt; zh`, `en-* -&gt; en`</span>
+  remoteTranslations?: Translations; <span class="hljs-comment">// 提前加载的远程翻译包，解析翻译时优先级高于 translations</span>
+  remoteUrl?: <span class="hljs-built_in">string</span>; <span class="hljs-comment">// 远程翻译包解析链接，如果是绝对链接将直接请求，否则使用 baseHref 拼接后请求，优先级高于 remoteTranslations，如果未提供 remoteTranslations 将默认尝试从 DEFAULT_REMOTE_URL 获取，否则默认不从远程获取</span>
+}</code></pre>
+						<a href="#translateservice" id="translateservice" style="color: inherit; text-decoration: none;">
+							<h2><code>TranslateService</code></h2>
+						</a>
+						<ul>
+							<li><code>get(key: TranslateKey, data?: unknown, ignoreNonExist?: boolean)</code>:
+							根据翻译 key 和上下文数据 data 获取翻译内容，翻译项不存在直接返回 key 文本，ignoreNonExist 开发环境是否忽视不存在的翻译项</li>
+							<li><code>toggleLocale()</code>: 根据 <code>locales</code> 循环切换当前区域设置</li>
+							<li><code>fetchTranslation(remoteUrl: string, locale?: string)</code>: 从远程 url 模板和区域获取翻译包</li>
+							<li><code>Observable</code> 属性列表:<ul>
+									<li><code>locale$</code></li>
+									<li><code>defaultLocale$</code></li>
+									<li><code>remoteLoaded$</code></li>
+								</ul>
+							</li>
+							<li>响应式属性列表:<ul>
+									<li><code>locale</code></li>
+									<li><code>defaultLocale</code></li>
+								</ul>
+							</li>
+							<li>只读属性: <code>remoteLoaded</code></li>
+						</ul>
+						<a href="#translatepipe" id="translatepipe" style="color: inherit; text-decoration: none;">
+							<h2><code>TranslatePipe</code></h2>
+						</a>
+						<p>自动响应 <code>TranslateService#locale</code> 和 <code>TranslateService#defaultLocale</code> 的变化，支持静态语言包和服务端返回的动态语言对象</p>
+						<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span>&gt;</span>{{ 'hello' | translate:'world' }}<span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span>&gt;</span>
+  {{ { en: 'Hello World!', zh: '你好世界！' } | translate }}
+<span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span></code></pre>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>References</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#core_translations" class="tsd-kind-icon">CORE_<wbr>TRANSLATIONS</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#default_locale" class="tsd-kind-icon">DEFAULT_<wbr>LOCALE</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#default_locales" class="tsd-kind-icon">DEFAULT_<wbr>LOCALES</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#default_remote_url" class="tsd-kind-icon">DEFAULT_<wbr>REMOTE_<wbr>URL</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#fallback_locale" class="tsd-kind-icon">FALLBACK_<wbr>LOCALE</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#locale_placeholder_regex" class="tsd-kind-icon">LOCALE_<wbr>PLACEHOLDER_<wbr>REGEX</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#locale_storage" class="tsd-kind-icon">LOCALE_<wbr>STORAGE</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#locale" class="tsd-kind-icon">Locale</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#token_default_locale" class="tsd-kind-icon">TOKEN_<wbr>DEFAULT_<wbr>LOCALE</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#token_locale" class="tsd-kind-icon">TOKEN_<wbr>LOCALE</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#token_locales" class="tsd-kind-icon">TOKEN_<wbr>LOCALES</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#token_loose" class="tsd-kind-icon">TOKEN_<wbr>LOOSE</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#token_remote_translations" class="tsd-kind-icon">TOKEN_<wbr>REMOTE_<wbr>TRANSLATIONS</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#token_remote_url" class="tsd-kind-icon">TOKEN_<wbr>REMOTE_<wbr>URL</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#token_translations" class="tsd-kind-icon">TOKEN_<wbr>TRANSLATIONS</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#translatekey" class="tsd-kind-icon">Translate<wbr>Key</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#translatemodule" class="tsd-kind-icon">Translate<wbr>Module</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#translateoptions" class="tsd-kind-icon">Translate<wbr>Options</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#translatepipe" class="tsd-kind-icon">Translate<wbr>Pipe</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#translateservice" class="tsd-kind-icon">Translate<wbr>Service</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#translation" class="tsd-kind-icon">Translation</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#translations" class="tsd-kind-icon">Translations</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#getbrowserlang" class="tsd-kind-icon">get<wbr>Browser<wbr>Lang</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="translate.html#getlang" class="tsd-kind-icon">get<wbr>Lang</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Namespaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-namespace tsd-parent-kind-module tsd-is-not-exported"><a href="translate.__global.html" class="tsd-kind-icon">__global</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Enumerations</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/translate.locale-1.html" class="tsd-kind-icon">Locale</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/translate.translatemodule-1.html" class="tsd-kind-icon">Translate<wbr>Module</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/translate.translatepipe-1.html" class="tsd-kind-icon">Translate<wbr>Pipe</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/translate.translateservice-1.html" class="tsd-kind-icon">Translate<wbr>Service</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/translate.translateoptions-1.html" class="tsd-kind-icon">Translate<wbr>Options</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/translate.translation-1.html" class="tsd-kind-icon">Translation</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="translate.html#translatekey-1" class="tsd-kind-icon">Translate<wbr>Key</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="translate.html#translations-1" class="tsd-kind-icon">Translations</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#core_translations-1" class="tsd-kind-icon">CORE_<wbr>TRANSLATIONS</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#default_locale-1" class="tsd-kind-icon">DEFAULT_<wbr>LOCALE</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#default_locales-1" class="tsd-kind-icon">DEFAULT_<wbr>LOCALES</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#default_remote_url-1" class="tsd-kind-icon">DEFAULT_<wbr>REMOTE_<wbr>URL</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported"><a href="translate.html#exportable" class="tsd-kind-icon">EXPORTABLE</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#fallback_locale-1" class="tsd-kind-icon">FALLBACK_<wbr>LOCALE</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#locale_placeholder_regex-1" class="tsd-kind-icon">LOCALE_<wbr>PLACEHOLDER_<wbr>REGEX</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#locale_storage-1" class="tsd-kind-icon">LOCALE_<wbr>STORAGE</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#token_default_locale-1" class="tsd-kind-icon">TOKEN_<wbr>DEFAULT_<wbr>LOCALE</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#token_locale-1" class="tsd-kind-icon">TOKEN_<wbr>LOCALE</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#token_locales-1" class="tsd-kind-icon">TOKEN_<wbr>LOCALES</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#token_loose-1" class="tsd-kind-icon">TOKEN_<wbr>LOOSE</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#token_remote_translations-1" class="tsd-kind-icon">TOKEN_<wbr>REMOTE_<wbr>TRANSLATIONS</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#token_remote_url-1" class="tsd-kind-icon">TOKEN_<wbr>REMOTE_<wbr>URL</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="translate.html#token_translations-1" class="tsd-kind-icon">TOKEN_<wbr>TRANSLATIONS</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="translate.html#getbrowserlang-1" class="tsd-kind-icon">get<wbr>Browser<wbr>Lang</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="translate.html#getlang-1" class="tsd-kind-icon">get<wbr>Lang</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-module"><a href="translate.html#en" class="tsd-kind-icon">en</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-module"><a href="translate.html#zh" class="tsd-kind-icon">zh</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>References</h2>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="core_translations" class="tsd-anchor"></a>
+					<h3>CORE_<wbr>TRANSLATIONS</h3>
+					Re-exports <a href="translate.html#core_translations-1">CORE_TRANSLATIONS</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="default_locale" class="tsd-anchor"></a>
+					<h3>DEFAULT_<wbr>LOCALE</h3>
+					Re-exports <a href="translate.html#default_locale-1">DEFAULT_LOCALE</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="default_locales" class="tsd-anchor"></a>
+					<h3>DEFAULT_<wbr>LOCALES</h3>
+					Re-exports <a href="translate.html#default_locales-1">DEFAULT_LOCALES</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="default_remote_url" class="tsd-anchor"></a>
+					<h3>DEFAULT_<wbr>REMOTE_<wbr>URL</h3>
+					Re-exports <a href="translate.html#default_remote_url-1">DEFAULT_REMOTE_URL</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="fallback_locale" class="tsd-anchor"></a>
+					<h3>FALLBACK_<wbr>LOCALE</h3>
+					Re-exports <a href="translate.html#fallback_locale-1">FALLBACK_LOCALE</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="locale_placeholder_regex" class="tsd-anchor"></a>
+					<h3>LOCALE_<wbr>PLACEHOLDER_<wbr>REGEX</h3>
+					Re-exports <a href="translate.html#locale_placeholder_regex-1">LOCALE_PLACEHOLDER_REGEX</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="locale_storage" class="tsd-anchor"></a>
+					<h3>LOCALE_<wbr>STORAGE</h3>
+					Re-exports <a href="translate.html#locale_storage-1">LOCALE_STORAGE</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="locale" class="tsd-anchor"></a>
+					<h3>Locale</h3>
+					Re-exports <a href="../enums/translate.locale-1.html">Locale</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="token_default_locale" class="tsd-anchor"></a>
+					<h3>TOKEN_<wbr>DEFAULT_<wbr>LOCALE</h3>
+					Re-exports <a href="translate.html#token_default_locale-1">TOKEN_DEFAULT_LOCALE</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="token_locale" class="tsd-anchor"></a>
+					<h3>TOKEN_<wbr>LOCALE</h3>
+					Re-exports <a href="translate.html#token_locale-1">TOKEN_LOCALE</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="token_locales" class="tsd-anchor"></a>
+					<h3>TOKEN_<wbr>LOCALES</h3>
+					Re-exports <a href="translate.html#token_locales-1">TOKEN_LOCALES</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="token_loose" class="tsd-anchor"></a>
+					<h3>TOKEN_<wbr>LOOSE</h3>
+					Re-exports <a href="translate.html#token_loose-1">TOKEN_LOOSE</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="token_remote_translations" class="tsd-anchor"></a>
+					<h3>TOKEN_<wbr>REMOTE_<wbr>TRANSLATIONS</h3>
+					Re-exports <a href="translate.html#token_remote_translations-1">TOKEN_REMOTE_TRANSLATIONS</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="token_remote_url" class="tsd-anchor"></a>
+					<h3>TOKEN_<wbr>REMOTE_<wbr>URL</h3>
+					Re-exports <a href="translate.html#token_remote_url-1">TOKEN_REMOTE_URL</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="token_translations" class="tsd-anchor"></a>
+					<h3>TOKEN_<wbr>TRANSLATIONS</h3>
+					Re-exports <a href="translate.html#token_translations-1">TOKEN_TRANSLATIONS</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="translatekey" class="tsd-anchor"></a>
+					<h3>Translate<wbr>Key</h3>
+					Re-exports <a href="translate.html#translatekey-1">TranslateKey</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="translatemodule" class="tsd-anchor"></a>
+					<h3>Translate<wbr>Module</h3>
+					Re-exports <a href="../classes/translate.translatemodule-1.html">TranslateModule</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="translateoptions" class="tsd-anchor"></a>
+					<h3>Translate<wbr>Options</h3>
+					Re-exports <a href="../interfaces/translate.translateoptions-1.html">TranslateOptions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="translatepipe" class="tsd-anchor"></a>
+					<h3>Translate<wbr>Pipe</h3>
+					Re-exports <a href="../classes/translate.translatepipe-1.html">TranslatePipe</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="translateservice" class="tsd-anchor"></a>
+					<h3>Translate<wbr>Service</h3>
+					Re-exports <a href="../classes/translate.translateservice-1.html">TranslateService</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="translation" class="tsd-anchor"></a>
+					<h3>Translation</h3>
+					Re-exports <a href="../interfaces/translate.translation-1.html">Translation</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="translations" class="tsd-anchor"></a>
+					<h3>Translations</h3>
+					Re-exports <a href="translate.html#translations-1">Translations</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="getbrowserlang" class="tsd-anchor"></a>
+					<h3>get<wbr>Browser<wbr>Lang</h3>
+					Re-exports <a href="translate.html#getbrowserlang-1">getBrowserLang</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="getlang" class="tsd-anchor"></a>
+					<h3>get<wbr>Lang</h3>
+					Re-exports <a href="translate.html#getlang-1">getLang</a>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="translatekey-1" class="tsd-anchor"></a>
+					<h3>Translate<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">Translate<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/translate.locale-1.html" class="tsd-signature-type">Locale</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/types.ts:17</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="translations-1" class="tsd-anchor"></a>
+					<h3>Translations</h3>
+					<div class="tsd-signature tsd-kind-icon">Translations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/translate.locale-1.html" class="tsd-signature-type">Locale</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/translate.translation-1.html" class="tsd-signature-type">Translation</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/types.ts:15</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="core_translations-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> CORE_<wbr>TRANSLATIONS</h3>
+					<div class="tsd-signature tsd-kind-icon">CORE_<wbr>TRANSLATIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = Object.freeze({ zh, en })</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/translate.module.ts:31</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="default_locale-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> DEFAULT_<wbr>LOCALE</h3>
+					<div class="tsd-signature tsd-kind-icon">DEFAULT_<wbr>LOCALE<span class="tsd-signature-symbol">:</span> <a href="../enums/translate.locale-1.html" class="tsd-signature-type">Locale</a><span class="tsd-signature-symbol"> = getLang(DEFAULT_LOCALES)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/translate.module.ts:29</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="default_locales-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> DEFAULT_<wbr>LOCALES</h3>
+					<div class="tsd-signature tsd-kind-icon">DEFAULT_<wbr>LOCALES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><a href="../enums/translate.locale-1.html#zh" class="tsd-signature-type">ZH</a><span class="tsd-signature-symbol"> | </span><a href="../enums/translate.locale-1.html#en" class="tsd-signature-type">EN</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = Object.values(Locale)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/translate.module.ts:28</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="default_remote_url-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> DEFAULT_<wbr>REMOTE_<wbr>URL</h3>
+					<div class="tsd-signature tsd-kind-icon">DEFAULT_<wbr>REMOTE_<wbr>URL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"custom/i18n.{locale}.yaml"</span><span class="tsd-signature-symbol"> = &quot;custom/i18n.{locale}.yaml&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/constants.ts:6</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
+					<a name="exportable" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> EXPORTABLE</h3>
+					<div class="tsd-signature tsd-kind-icon">EXPORTABLE<span class="tsd-signature-symbol">:</span> <a href="../classes/translate.translatepipe-1.html" class="tsd-signature-type">TranslatePipe</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [TranslatePipe]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/translate.module.ts:26</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="fallback_locale-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> FALLBACK_<wbr>LOCALE</h3>
+					<div class="tsd-signature tsd-kind-icon">FALLBACK_<wbr>LOCALE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = getBrowserLang()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/translate.module.ts:30</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="locale_placeholder_regex-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> LOCALE_<wbr>PLACEHOLDER_<wbr>REGEX</h3>
+					<div class="tsd-signature tsd-kind-icon">LOCALE_<wbr>PLACEHOLDER_<wbr>REGEX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /{+\s*locale\s*}+/</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/constants.ts:10</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="locale_storage-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> LOCALE_<wbr>STORAGE</h3>
+					<div class="tsd-signature tsd-kind-icon">LOCALE_<wbr>STORAGE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"__LOCALE__"</span><span class="tsd-signature-symbol"> = &quot;__LOCALE__&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/constants.ts:8</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="token_default_locale-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> TOKEN_<wbr>DEFAULT_<wbr>LOCALE</h3>
+					<div class="tsd-signature tsd-kind-icon">TOKEN_<wbr>DEFAULT_<wbr>LOCALE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">InjectionToken</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/translate.locale-1.html" class="tsd-signature-type">Locale</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new InjectionToken&lt;Locale&gt;(&#x27;fallback locale if translation for current locale found&#x27;,)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/tokens.ts:15</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="token_locale-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> TOKEN_<wbr>LOCALE</h3>
+					<div class="tsd-signature tsd-kind-icon">TOKEN_<wbr>LOCALE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">InjectionToken</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/translate.locale-1.html" class="tsd-signature-type">Locale</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new InjectionToken&lt;Locale&gt;(&#x27;initialize and runtime locale&#x27;,)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/tokens.ts:11</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="token_locales-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> TOKEN_<wbr>LOCALES</h3>
+					<div class="tsd-signature tsd-kind-icon">TOKEN_<wbr>LOCALES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">InjectionToken</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/translate.locale-1.html" class="tsd-signature-type">Locale</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new InjectionToken&lt;Locale[]&gt;(&#x27;available locale list&#x27;,)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/tokens.ts:19</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="token_loose-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> TOKEN_<wbr>LOOSE</h3>
+					<div class="tsd-signature tsd-kind-icon">TOKEN_<wbr>LOOSE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">InjectionToken</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new InjectionToken&lt;boolean&gt;(&#x27;whether to use loose mode which represents treat &#x60;locale-*&#x60; as &#x60;locale&#x60;&#x27;,)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/tokens.ts:31</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="token_remote_translations-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> TOKEN_<wbr>REMOTE_<wbr>TRANSLATIONS</h3>
+					<div class="tsd-signature tsd-kind-icon">TOKEN_<wbr>REMOTE_<wbr>TRANSLATIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">InjectionToken</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new InjectionToken&lt;Translations&gt;(&#x27;custom loaded remote translations with highest privilege as &#x60;TOKEN_REMOTE_URL&#x60;&#x27;,)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/tokens.ts:27</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="token_remote_url-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> TOKEN_<wbr>REMOTE_<wbr>URL</h3>
+					<div class="tsd-signature tsd-kind-icon">TOKEN_<wbr>REMOTE_<wbr>URL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">InjectionToken</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new InjectionToken&lt;string&gt;(&#x27;extra remote i18n translations url with highest privilege&#x27;,)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/tokens.ts:35</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="token_translations-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> TOKEN_<wbr>TRANSLATIONS</h3>
+					<div class="tsd-signature tsd-kind-icon">TOKEN_<wbr>TRANSLATIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">InjectionToken</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new InjectionToken&lt;Translations&gt;(&#x27;multiple custom translations list, frozen, the later the higher privilege&#x27;,)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/tokens.ts:23</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="getbrowserlang-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Browser<wbr>Lang</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Browser<wbr>Lang<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/translate/helpers.ts:17</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="getlang-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Lang</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Lang&lt;T&gt;<span class="tsd-signature-symbol">(</span>LOCALES<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/translate/helpers.ts:23</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>LOCALES: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-module">
+					<a name="en" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> en</h3>
+					<div class="tsd-signature tsd-kind-icon">en<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:9</li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.action" class="tsd-anchor"></a>
+						<h3>action</h3>
+						<div class="tsd-signature tsd-kind-icon">action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Action&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:44</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.add" class="tsd-anchor"></a>
+						<h3>add</h3>
+						<div class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Add&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:48</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.all" class="tsd-anchor"></a>
+						<h3>all</h3>
+						<div class="tsd-signature tsd-kind-icon">all<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;All&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:17</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.basic_info" class="tsd-anchor"></a>
+						<h3>basic_<wbr>info</h3>
+						<div class="tsd-signature tsd-kind-icon">basic_<wbr>info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Basic Info&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:45</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.cancel" class="tsd-anchor"></a>
+						<h3>cancel</h3>
+						<div class="tsd-signature tsd-kind-icon">cancel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Cancel&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:21</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.confirm" class="tsd-anchor"></a>
+						<h3>confirm</h3>
+						<div class="tsd-signature tsd-kind-icon">confirm<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Confirm&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:51</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.confirm_retry_with_latest_version" class="tsd-anchor"></a>
+						<h3>confirm_<wbr>retry_<wbr>with_<wbr>latest_<wbr>version</h3>
+						<div class="tsd-signature tsd-kind-icon">confirm_<wbr>retry_<wbr>with_<wbr>latest_<wbr>version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Try again with the latest resourceVersion?&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:92</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.continue_load" class="tsd-anchor"></a>
+						<h3>continue_<wbr>load</h3>
+						<div class="tsd-signature tsd-kind-icon">continue_<wbr>load<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Continue load&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:68</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.create" class="tsd-anchor"></a>
+						<h3>create</h3>
+						<div class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Create&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:20</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.created_at" class="tsd-anchor"></a>
+						<h3>created_<wbr>at</h3>
+						<div class="tsd-signature tsd-kind-icon">created_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Created at&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:58</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.creating" class="tsd-anchor"></a>
+						<h3>creating</h3>
+						<div class="tsd-signature tsd-kind-icon">creating<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Creating, please wait...&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:40</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.delete" class="tsd-anchor"></a>
+						<h3>delete</h3>
+						<div class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Delete&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:24</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.deleting" class="tsd-anchor"></a>
+						<h3>deleting</h3>
+						<div class="tsd-signature tsd-kind-icon">deleting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Deleting, please wait...&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:39</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.description" class="tsd-anchor"></a>
+						<h3>description</h3>
+						<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Description&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:27</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.display_name" class="tsd-anchor"></a>
+						<h3>display_<wbr>name</h3>
+						<div class="tsd-signature tsd-kind-icon">display_<wbr>name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Display Name&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:16</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.domain" class="tsd-anchor"></a>
+						<h3>domain</h3>
+						<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Domain&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:31</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.duplicate_key_error_message" class="tsd-anchor"></a>
+						<h3>duplicate_<wbr>key_<wbr>error_<wbr>message</h3>
+						<div class="tsd-signature tsd-kind-icon">duplicate_<wbr>key_<wbr>error_<wbr>message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Key [{{ key }}] already exists&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:50</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.email" class="tsd-anchor"></a>
+						<h3>email</h3>
+						<div class="tsd-signature tsd-kind-icon">email<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Email&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:28</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.error" class="tsd-anchor"></a>
+						<h3>error</h3>
+						<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Error&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:60</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.event" class="tsd-anchor"></a>
+						<h3>event</h3>
+						<div class="tsd-signature tsd-kind-icon">event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Event&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:46</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.expired_license" class="tsd-anchor"></a>
+						<h3>expired_<wbr>license</h3>
+						<div class="tsd-signature tsd-kind-icon">expired_<wbr>license<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Product license expired&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:83</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.filter_by_name" class="tsd-anchor"></a>
+						<h3>filter_<wbr>by_<wbr>name</h3>
+						<div class="tsd-signature tsd-kind-icon">filter_<wbr>by_<wbr>name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Filter by name&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:78</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.import" class="tsd-anchor"></a>
+						<h3>import</h3>
+						<div class="tsd-signature tsd-kind-icon">import<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Import&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:54</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.import_now" class="tsd-anchor"></a>
+						<h3>import_<wbr>now</h3>
+						<div class="tsd-signature tsd-kind-icon">import_<wbr>now<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Import now&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:87</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.inaccessible" class="tsd-anchor"></a>
+						<h3>inaccessible</h3>
+						<div class="tsd-signature tsd-kind-icon">inaccessible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Can&#x27;t access this page&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:100</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.key" class="tsd-anchor"></a>
+						<h3>key</h3>
+						<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Key&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:34</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.key_is_missing_error_message" class="tsd-anchor"></a>
+						<h3>key_<wbr>is_<wbr>missing_<wbr>error_<wbr>message</h3>
+						<div class="tsd-signature tsd-kind-icon">key_<wbr>is_<wbr>missing_<wbr>error_<wbr>message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Key should not be empty when value is given&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:49</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.label" class="tsd-anchor"></a>
+						<h3>label</h3>
+						<div class="tsd-signature tsd-kind-icon">label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Label&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:47</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.license_error_hint" class="tsd-anchor"></a>
+						<h3>license_<wbr>error_<wbr>hint</h3>
+						<div class="tsd-signature tsd-kind-icon">license_<wbr>error_<wbr>hint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;The current &quot;{ product }}&quot; product feature is not available. You can use the product features by importing a license&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:85</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.list_data_has_expired" class="tsd-anchor"></a>
+						<h3>list_<wbr>data_<wbr>has_<wbr>expired</h3>
+						<div class="tsd-signature tsd-kind-icon">list_<wbr>data_<wbr>has_<wbr>expired<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;List data has expired&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:69</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.load_more" class="tsd-anchor"></a>
+						<h3>load_<wbr>more</h3>
+						<div class="tsd-signature tsd-kind-icon">load_<wbr>more<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Load more&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:67</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.loading" class="tsd-anchor"></a>
+						<h3>loading</h3>
+						<div class="tsd-signature tsd-kind-icon">loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Loading...&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:66</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.loading_error" class="tsd-anchor"></a>
+						<h3>loading_<wbr>error</h3>
+						<div class="tsd-signature tsd-kind-icon">loading_<wbr>error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Loading error&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:62</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.logout" class="tsd-anchor"></a>
+						<h3>logout</h3>
+						<div class="tsd-signature tsd-kind-icon">logout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Logout&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:14</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.maintenance_center" class="tsd-anchor"></a>
+						<h3>maintenance_<wbr>center</h3>
+						<div class="tsd-signature tsd-kind-icon">maintenance_<wbr>center<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Maintenance center&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:95</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.member" class="tsd-anchor"></a>
+						<h3>member</h3>
+						<div class="tsd-signature tsd-kind-icon">member<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Project Member&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:32</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.memory" class="tsd-anchor"></a>
+						<h3>memory</h3>
+						<div class="tsd-signature tsd-kind-icon">memory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Memory&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:43</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.my_profile" class="tsd-anchor"></a>
+						<h3>my_<wbr>profile</h3>
+						<div class="tsd-signature tsd-kind-icon">my_<wbr>profile<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;My Profile&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:12</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.name" class="tsd-anchor"></a>
+						<h3>name</h3>
+						<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Name&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:15</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.namespace" class="tsd-anchor"></a>
+						<h3>namespace</h3>
+						<div class="tsd-signature tsd-kind-icon">namespace<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Namespace&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:59</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.network" class="tsd-anchor"></a>
+						<h3>network</h3>
+						<div class="tsd-signature tsd-kind-icon">network<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Network&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:53</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.next_locale" class="tsd-anchor"></a>
+						<h3>next_<wbr>locale</h3>
+						<div class="tsd-signature tsd-kind-icon">next_<wbr>locale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;简体中文&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:13</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.no_available_license" class="tsd-anchor"></a>
+						<h3>no_<wbr>available_<wbr>license</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>available_<wbr>license<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;No product licenses available&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:84</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.no_data" class="tsd-anchor"></a>
+						<h3>no_<wbr>data</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;No Data&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:33</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.no_named_data_hint" class="tsd-anchor"></a>
+						<h3>no_<wbr>named_<wbr>data_<wbr>hint</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>named_<wbr>data_<wbr>hint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;No {{ name }}&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:61</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.no_namespace" class="tsd-anchor"></a>
+						<h3>no_<wbr>namespace</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>namespace<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;No namespace&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:80</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.no_permission_description" class="tsd-anchor"></a>
+						<h3>no_<wbr>permission_<wbr>description</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>permission_<wbr>description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;No permission, please contact the administrator&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:99</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.no_permission_license" class="tsd-anchor"></a>
+						<h3>no_<wbr>permission_<wbr>license</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>permission_<wbr>license<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;User does not have permission&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:88</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.no_permission_license_hint" class="tsd-anchor"></a>
+						<h3>no_<wbr>permission_<wbr>license_<wbr>hint</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>permission_<wbr>license_<wbr>hint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;The current user does not have access to the platform, please contact the administrator&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:89</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.no_permission_please_contact_administrator" class="tsd-anchor"></a>
+						<h3>no_<wbr>permission_<wbr>please_<wbr>contact_<wbr>administrator</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>permission_<wbr>please_<wbr>contact_<wbr>administrator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;No permission, please contact administrator&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:72</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.no_product" class="tsd-anchor"></a>
+						<h3>no_<wbr>product</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>product<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;No product&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:77</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.no_project" class="tsd-anchor"></a>
+						<h3>no_<wbr>project</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>project<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;No project&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:79</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.no_view_permission" class="tsd-anchor"></a>
+						<h3>no_<wbr>view_<wbr>permission</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>view_<wbr>permission<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;No view permission&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:71</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.not_deployed_description" class="tsd-anchor"></a>
+						<h3>not_<wbr>deployed_<wbr>description</h3>
+						<div class="tsd-signature tsd-kind-icon">not_<wbr>deployed_<wbr>description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;The product is not deployed, please contact the administrator&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:101</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.not_support" class="tsd-anchor"></a>
+						<h3>not_<wbr>support</h3>
+						<div class="tsd-signature tsd-kind-icon">not_<wbr>support<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;This feature is not supported&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:96</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.not_support_description" class="tsd-anchor"></a>
+						<h3>not_<wbr>support_<wbr>description</h3>
+						<div class="tsd-signature tsd-kind-icon">not_<wbr>support_<wbr>description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;The current scene does not support this function, please contact the administrator&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:97</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.or" class="tsd-anchor"></a>
+						<h3>or</h3>
+						<div class="tsd-signature tsd-kind-icon">or<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;or&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:65</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.password" class="tsd-anchor"></a>
+						<h3>password</h3>
+						<div class="tsd-signature tsd-kind-icon">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Password&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:26</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.platform_center" class="tsd-anchor"></a>
+						<h3>platform_<wbr>center</h3>
+						<div class="tsd-signature tsd-kind-icon">platform_<wbr>center<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Platform center&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:94</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.platform_management" class="tsd-anchor"></a>
+						<h3>platform_<wbr>management</h3>
+						<div class="tsd-signature tsd-kind-icon">platform_<wbr>management<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Platform Management&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:10</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.please" class="tsd-anchor"></a>
+						<h3>please</h3>
+						<div class="tsd-signature tsd-kind-icon">please<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;please&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:63</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.product" class="tsd-anchor"></a>
+						<h3>product</h3>
+						<div class="tsd-signature tsd-kind-icon">product<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Product&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:76</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.project" class="tsd-anchor"></a>
+						<h3>project</h3>
+						<div class="tsd-signature tsd-kind-icon">project<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Project&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:30</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.project_management" class="tsd-anchor"></a>
+						<h3>project_<wbr>management</h3>
+						<div class="tsd-signature tsd-kind-icon">project_<wbr>management<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Project Management&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:11</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.refresh" class="tsd-anchor"></a>
+						<h3>refresh</h3>
+						<div class="tsd-signature tsd-kind-icon">refresh<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Refresh&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:64</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.regexp_tip_k8s_resource_name_base" class="tsd-anchor"></a>
+						<h3>regexp_<wbr>tip_<wbr>k8s_<wbr>resource_<wbr>name_<wbr>base</h3>
+						<div class="tsd-signature tsd-kind-icon">regexp_<wbr>tip_<wbr>k8s_<wbr>resource_<wbr>name_<wbr>base<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Start/End with a-z, 0-9, accept a-z, 0-9, -&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:56</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.reload" class="tsd-anchor"></a>
+						<h3>reload</h3>
+						<div class="tsd-signature tsd-kind-icon">reload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Reload&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:37</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.resource_name" class="tsd-anchor"></a>
+						<h3>resource_<wbr>name</h3>
+						<div class="tsd-signature tsd-kind-icon">resource_<wbr>name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Resource name&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:29</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.resource_not_exist" class="tsd-anchor"></a>
+						<h3>resource_<wbr>not_<wbr>exist</h3>
+						<div class="tsd-signature tsd-kind-icon">resource_<wbr>not_<wbr>exist<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Resource not exist&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:70</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.resource_version_conflict" class="tsd-anchor"></a>
+						<h3>resource_<wbr>version_<wbr>conflict</h3>
+						<div class="tsd-signature tsd-kind-icon">resource_<wbr>version_<wbr>conflict<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Resource version conflict&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:91</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.retry" class="tsd-anchor"></a>
+						<h3>retry</h3>
+						<div class="tsd-signature tsd-kind-icon">retry<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Retry&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:36</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.return_resource_list" class="tsd-anchor"></a>
+						<h3>return_<wbr>resource_<wbr>list</h3>
+						<div class="tsd-signature tsd-kind-icon">return_<wbr>resource_<wbr>list<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Return resource list&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:74</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.running" class="tsd-anchor"></a>
+						<h3>running</h3>
+						<div class="tsd-signature tsd-kind-icon">running<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Running&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:41</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.search_by_display_name_placeholder" class="tsd-anchor"></a>
+						<h3>search_<wbr>by_<wbr>display_<wbr>name_<wbr>placeholder</h3>
+						<div class="tsd-signature tsd-kind-icon">search_<wbr>by_<wbr>display_<wbr>name_<wbr>placeholder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Search by Display Name&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:19</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.search_by_name_placeholder" class="tsd-anchor"></a>
+						<h3>search_<wbr>by_<wbr>name_<wbr>placeholder</h3>
+						<div class="tsd-signature tsd-kind-icon">search_<wbr>by_<wbr>name_<wbr>placeholder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Search by Name&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:18</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.service" class="tsd-anchor"></a>
+						<h3>service</h3>
+						<div class="tsd-signature tsd-kind-icon">service<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Service&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:22</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.status" class="tsd-anchor"></a>
+						<h3>status</h3>
+						<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Status&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:55</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.switch_product" class="tsd-anchor"></a>
+						<h3>switch_<wbr>product</h3>
+						<div class="tsd-signature tsd-kind-icon">switch_<wbr>product<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Switch Product&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:75</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.total" class="tsd-anchor"></a>
+						<h3>total</h3>
+						<div class="tsd-signature tsd-kind-icon">total<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Total&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:42</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.type" class="tsd-anchor"></a>
+						<h3>type</h3>
+						<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Type&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:38</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.update" class="tsd-anchor"></a>
+						<h3>update</h3>
+						<div class="tsd-signature tsd-kind-icon">update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Update&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:23</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.update_failed" class="tsd-anchor"></a>
+						<h3>update_<wbr>failed</h3>
+						<div class="tsd-signature tsd-kind-icon">update_<wbr>failed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;update failed&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:52</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.username" class="tsd-anchor"></a>
+						<h3>username</h3>
+						<div class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Username&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:25</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.value" class="tsd-anchor"></a>
+						<h3>value</h3>
+						<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Value&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:35</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.view_detail" class="tsd-anchor"></a>
+						<h3>view_<wbr>detail</h3>
+						<div class="tsd-signature tsd-kind-icon">view_<wbr>detail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;View Detail&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:81</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="en.view_yaml" class="tsd-anchor"></a>
+						<h3>view_<wbr>yaml</h3>
+						<div class="tsd-signature tsd-kind-icon">view_<wbr>yaml<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;View YAML&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.en.ts:82</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-module">
+					<a name="zh" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> zh</h3>
+					<div class="tsd-signature tsd-kind-icon">zh<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:9</li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.action-1" class="tsd-anchor"></a>
+						<h3>action</h3>
+						<div class="tsd-signature tsd-kind-icon">action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;操作&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:44</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.add-1" class="tsd-anchor"></a>
+						<h3>add</h3>
+						<div class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;添加&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:48</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.all-1" class="tsd-anchor"></a>
+						<h3>all</h3>
+						<div class="tsd-signature tsd-kind-icon">all<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;全部&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:17</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.basic_info-1" class="tsd-anchor"></a>
+						<h3>basic_<wbr>info</h3>
+						<div class="tsd-signature tsd-kind-icon">basic_<wbr>info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;基本信息&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:45</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.cancel-1" class="tsd-anchor"></a>
+						<h3>cancel</h3>
+						<div class="tsd-signature tsd-kind-icon">cancel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;取消&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:21</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.confirm-1" class="tsd-anchor"></a>
+						<h3>confirm</h3>
+						<div class="tsd-signature tsd-kind-icon">confirm<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;确定&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:51</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.confirm_retry_with_latest_version-1" class="tsd-anchor"></a>
+						<h3>confirm_<wbr>retry_<wbr>with_<wbr>latest_<wbr>version</h3>
+						<div class="tsd-signature tsd-kind-icon">confirm_<wbr>retry_<wbr>with_<wbr>latest_<wbr>version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;是否使用最新的 resourceVersion 重试？&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:92</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.continue_load-1" class="tsd-anchor"></a>
+						<h3>continue_<wbr>load</h3>
+						<div class="tsd-signature tsd-kind-icon">continue_<wbr>load<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;继续加载&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:68</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.create-1" class="tsd-anchor"></a>
+						<h3>create</h3>
+						<div class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;创建&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:20</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.created_at-1" class="tsd-anchor"></a>
+						<h3>created_<wbr>at</h3>
+						<div class="tsd-signature tsd-kind-icon">created_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;创建于&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:58</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.creating-1" class="tsd-anchor"></a>
+						<h3>creating</h3>
+						<div class="tsd-signature tsd-kind-icon">creating<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;创建中，请稍候……&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:40</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.delete-1" class="tsd-anchor"></a>
+						<h3>delete</h3>
+						<div class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;删除&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:24</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.delete_confirm_resource" class="tsd-anchor"></a>
+						<h3>delete_<wbr>confirm_<wbr>resource</h3>
+						<div class="tsd-signature tsd-kind-icon">delete_<wbr>confirm_<wbr>resource<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;确定删除{{ type }} {{ name }}吗？&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:74</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.delete_not_recoverable" class="tsd-anchor"></a>
+						<h3>delete_<wbr>not_<wbr>recoverable</h3>
+						<div class="tsd-signature tsd-kind-icon">delete_<wbr>not_<wbr>recoverable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;删除后不可恢复！&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:75</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.deleting-1" class="tsd-anchor"></a>
+						<h3>deleting</h3>
+						<div class="tsd-signature tsd-kind-icon">deleting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;删除中，请稍候……&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:39</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.description-1" class="tsd-anchor"></a>
+						<h3>description</h3>
+						<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;描述&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:27</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.display_name-1" class="tsd-anchor"></a>
+						<h3>display_<wbr>name</h3>
+						<div class="tsd-signature tsd-kind-icon">display_<wbr>name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;显示名称&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:16</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.domain-1" class="tsd-anchor"></a>
+						<h3>domain</h3>
+						<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;域名&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:31</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.duplicate_key_error_message-1" class="tsd-anchor"></a>
+						<h3>duplicate_<wbr>key_<wbr>error_<wbr>message</h3>
+						<div class="tsd-signature tsd-kind-icon">duplicate_<wbr>key_<wbr>error_<wbr>message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;「键」{{ key }} 已经存在&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:50</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.email-1" class="tsd-anchor"></a>
+						<h3>email</h3>
+						<div class="tsd-signature tsd-kind-icon">email<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;邮箱&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:28</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.error-1" class="tsd-anchor"></a>
+						<h3>error</h3>
+						<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;错误&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:60</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.event-1" class="tsd-anchor"></a>
+						<h3>event</h3>
+						<div class="tsd-signature tsd-kind-icon">event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;事件&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:46</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.expired_license-1" class="tsd-anchor"></a>
+						<h3>expired_<wbr>license</h3>
+						<div class="tsd-signature tsd-kind-icon">expired_<wbr>license<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;产品许可证已过期&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:85</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.filter_by_name-1" class="tsd-anchor"></a>
+						<h3>filter_<wbr>by_<wbr>name</h3>
+						<div class="tsd-signature tsd-kind-icon">filter_<wbr>by_<wbr>name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;按名称过滤&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:79</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.import-1" class="tsd-anchor"></a>
+						<h3>import</h3>
+						<div class="tsd-signature tsd-kind-icon">import<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;导入&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:54</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.import_now-1" class="tsd-anchor"></a>
+						<h3>import_<wbr>now</h3>
+						<div class="tsd-signature tsd-kind-icon">import_<wbr>now<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;立即导入&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:88</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.inaccessible-1" class="tsd-anchor"></a>
+						<h3>inaccessible</h3>
+						<div class="tsd-signature tsd-kind-icon">inaccessible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;无法访问此页面&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:98</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.key-1" class="tsd-anchor"></a>
+						<h3>key</h3>
+						<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;键&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:34</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.key_is_missing_error_message-1" class="tsd-anchor"></a>
+						<h3>key_<wbr>is_<wbr>missing_<wbr>error_<wbr>message</h3>
+						<div class="tsd-signature tsd-kind-icon">key_<wbr>is_<wbr>missing_<wbr>error_<wbr>message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;「值」有数据时，「键」为必填项&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:49</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.label-1" class="tsd-anchor"></a>
+						<h3>label</h3>
+						<div class="tsd-signature tsd-kind-icon">label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;标签&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:47</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.license_error_hint-1" class="tsd-anchor"></a>
+						<h3>license_<wbr>error_<wbr>hint</h3>
+						<div class="tsd-signature tsd-kind-icon">license_<wbr>error_<wbr>hint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;当前“{{ product }}”产品功能无法使用。您可通过导入许可证使用该产品功能&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:86</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.list_data_has_expired-1" class="tsd-anchor"></a>
+						<h3>list_<wbr>data_<wbr>has_<wbr>expired</h3>
+						<div class="tsd-signature tsd-kind-icon">list_<wbr>data_<wbr>has_<wbr>expired<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;列表数据已过期&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:69</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.load_more-1" class="tsd-anchor"></a>
+						<h3>load_<wbr>more</h3>
+						<div class="tsd-signature tsd-kind-icon">load_<wbr>more<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;加载更多&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:67</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.loading-1" class="tsd-anchor"></a>
+						<h3>loading</h3>
+						<div class="tsd-signature tsd-kind-icon">loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;加载中……&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:66</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.loading_error-1" class="tsd-anchor"></a>
+						<h3>loading_<wbr>error</h3>
+						<div class="tsd-signature tsd-kind-icon">loading_<wbr>error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;加载错误&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:62</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.logout-1" class="tsd-anchor"></a>
+						<h3>logout</h3>
+						<div class="tsd-signature tsd-kind-icon">logout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;退出登录&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:14</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.maintenance_center-1" class="tsd-anchor"></a>
+						<h3>maintenance_<wbr>center</h3>
+						<div class="tsd-signature tsd-kind-icon">maintenance_<wbr>center<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;运维中心&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:94</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.member-1" class="tsd-anchor"></a>
+						<h3>member</h3>
+						<div class="tsd-signature tsd-kind-icon">member<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;项目成员&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:32</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.memory-1" class="tsd-anchor"></a>
+						<h3>memory</h3>
+						<div class="tsd-signature tsd-kind-icon">memory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;内存&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:43</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.my_profile-1" class="tsd-anchor"></a>
+						<h3>my_<wbr>profile</h3>
+						<div class="tsd-signature tsd-kind-icon">my_<wbr>profile<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;个人信息&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:12</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.name-1" class="tsd-anchor"></a>
+						<h3>name</h3>
+						<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;名称&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:15</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.namespace-1" class="tsd-anchor"></a>
+						<h3>namespace</h3>
+						<div class="tsd-signature tsd-kind-icon">namespace<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;命名空间&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:59</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.network-1" class="tsd-anchor"></a>
+						<h3>network</h3>
+						<div class="tsd-signature tsd-kind-icon">network<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;网络&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:53</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.next_locale-1" class="tsd-anchor"></a>
+						<h3>next_<wbr>locale</h3>
+						<div class="tsd-signature tsd-kind-icon">next_<wbr>locale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;English&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:13</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.no_available_license-1" class="tsd-anchor"></a>
+						<h3>no_<wbr>available_<wbr>license</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>available_<wbr>license<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;无可用产品许可证&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:84</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.no_data-1" class="tsd-anchor"></a>
+						<h3>no_<wbr>data</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;无数据&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:33</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.no_named_data_hint-1" class="tsd-anchor"></a>
+						<h3>no_<wbr>named_<wbr>data_<wbr>hint</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>named_<wbr>data_<wbr>hint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;无{{ name }}&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:61</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.no_namespace-1" class="tsd-anchor"></a>
+						<h3>no_<wbr>namespace</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>namespace<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;无命名空间&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:81</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.no_permission_description-1" class="tsd-anchor"></a>
+						<h3>no_<wbr>permission_<wbr>description</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>permission_<wbr>description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;无权限，请联系管理员&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:97</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.no_permission_license-1" class="tsd-anchor"></a>
+						<h3>no_<wbr>permission_<wbr>license</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>permission_<wbr>license<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;用户无权限&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:89</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.no_permission_license_hint-1" class="tsd-anchor"></a>
+						<h3>no_<wbr>permission_<wbr>license_<wbr>hint</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>permission_<wbr>license_<wbr>hint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;当前用户无访问平台权限，请联系管理员&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:90</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.no_permission_please_contact_administrator-1" class="tsd-anchor"></a>
+						<h3>no_<wbr>permission_<wbr>please_<wbr>contact_<wbr>administrator</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>permission_<wbr>please_<wbr>contact_<wbr>administrator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;无权限，请联系管理员&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:72</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.no_product-1" class="tsd-anchor"></a>
+						<h3>no_<wbr>product</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>product<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;无产品&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:78</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.no_project-1" class="tsd-anchor"></a>
+						<h3>no_<wbr>project</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>project<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;无项目&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:80</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.no_view_permission-1" class="tsd-anchor"></a>
+						<h3>no_<wbr>view_<wbr>permission</h3>
+						<div class="tsd-signature tsd-kind-icon">no_<wbr>view_<wbr>permission<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;无查看权限&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:71</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.not_deployed_description-1" class="tsd-anchor"></a>
+						<h3>not_<wbr>deployed_<wbr>description</h3>
+						<div class="tsd-signature tsd-kind-icon">not_<wbr>deployed_<wbr>description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;产品未部署，请联系管理员&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:99</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.not_support-1" class="tsd-anchor"></a>
+						<h3>not_<wbr>support</h3>
+						<div class="tsd-signature tsd-kind-icon">not_<wbr>support<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;不支持此功能&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:95</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.not_support_description-1" class="tsd-anchor"></a>
+						<h3>not_<wbr>support_<wbr>description</h3>
+						<div class="tsd-signature tsd-kind-icon">not_<wbr>support_<wbr>description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;当前场景不支持此功能，请联系管理员&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:96</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.or-1" class="tsd-anchor"></a>
+						<h3>or</h3>
+						<div class="tsd-signature tsd-kind-icon">or<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;或&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:65</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.password-1" class="tsd-anchor"></a>
+						<h3>password</h3>
+						<div class="tsd-signature tsd-kind-icon">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;密码&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:26</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.platform_center-1" class="tsd-anchor"></a>
+						<h3>platform_<wbr>center</h3>
+						<div class="tsd-signature tsd-kind-icon">platform_<wbr>center<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;平台中心&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:93</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.platform_management-1" class="tsd-anchor"></a>
+						<h3>platform_<wbr>management</h3>
+						<div class="tsd-signature tsd-kind-icon">platform_<wbr>management<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;平台管理&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:10</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.please-1" class="tsd-anchor"></a>
+						<h3>please</h3>
+						<div class="tsd-signature tsd-kind-icon">please<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;请&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:63</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.product-1" class="tsd-anchor"></a>
+						<h3>product</h3>
+						<div class="tsd-signature tsd-kind-icon">product<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;产品&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:77</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.project-1" class="tsd-anchor"></a>
+						<h3>project</h3>
+						<div class="tsd-signature tsd-kind-icon">project<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;项目&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:30</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.project_management-1" class="tsd-anchor"></a>
+						<h3>project_<wbr>management</h3>
+						<div class="tsd-signature tsd-kind-icon">project_<wbr>management<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;项目管理&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:11</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.refresh-1" class="tsd-anchor"></a>
+						<h3>refresh</h3>
+						<div class="tsd-signature tsd-kind-icon">refresh<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;刷新&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:64</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.regexp_tip_k8s_resource_name_base-1" class="tsd-anchor"></a>
+						<h3>regexp_<wbr>tip_<wbr>k8s_<wbr>resource_<wbr>name_<wbr>base</h3>
+						<div class="tsd-signature tsd-kind-icon">regexp_<wbr>tip_<wbr>k8s_<wbr>resource_<wbr>name_<wbr>base<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;以 a-z, 0-9 开头结尾，支持使用 a-z, 0-9, -&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:56</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.reload-1" class="tsd-anchor"></a>
+						<h3>reload</h3>
+						<div class="tsd-signature tsd-kind-icon">reload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;重新加载&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:37</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.resource_name-1" class="tsd-anchor"></a>
+						<h3>resource_<wbr>name</h3>
+						<div class="tsd-signature tsd-kind-icon">resource_<wbr>name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;资源名称&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:29</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.resource_not_exist-1" class="tsd-anchor"></a>
+						<h3>resource_<wbr>not_<wbr>exist</h3>
+						<div class="tsd-signature tsd-kind-icon">resource_<wbr>not_<wbr>exist<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;资源不存在&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:70</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.resource_version_conflict-1" class="tsd-anchor"></a>
+						<h3>resource_<wbr>version_<wbr>conflict</h3>
+						<div class="tsd-signature tsd-kind-icon">resource_<wbr>version_<wbr>conflict<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;资源版本冲突&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:91</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.retry-1" class="tsd-anchor"></a>
+						<h3>retry</h3>
+						<div class="tsd-signature tsd-kind-icon">retry<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;重试&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:36</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.return_resource_list-1" class="tsd-anchor"></a>
+						<h3>return_<wbr>resource_<wbr>list</h3>
+						<div class="tsd-signature tsd-kind-icon">return_<wbr>resource_<wbr>list<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;返回资源列表&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:73</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.running-1" class="tsd-anchor"></a>
+						<h3>running</h3>
+						<div class="tsd-signature tsd-kind-icon">running<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;运行中&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:41</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.search_by_display_name_placeholder-1" class="tsd-anchor"></a>
+						<h3>search_<wbr>by_<wbr>display_<wbr>name_<wbr>placeholder</h3>
+						<div class="tsd-signature tsd-kind-icon">search_<wbr>by_<wbr>display_<wbr>name_<wbr>placeholder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;按显示名称搜索&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:19</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.search_by_name_placeholder-1" class="tsd-anchor"></a>
+						<h3>search_<wbr>by_<wbr>name_<wbr>placeholder</h3>
+						<div class="tsd-signature tsd-kind-icon">search_<wbr>by_<wbr>name_<wbr>placeholder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;按名称搜索&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:18</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.service-1" class="tsd-anchor"></a>
+						<h3>service</h3>
+						<div class="tsd-signature tsd-kind-icon">service<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;服务&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:22</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.status-1" class="tsd-anchor"></a>
+						<h3>status</h3>
+						<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;状态&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:55</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.switch_product-1" class="tsd-anchor"></a>
+						<h3>switch_<wbr>product</h3>
+						<div class="tsd-signature tsd-kind-icon">switch_<wbr>product<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;切换产品&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:76</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.total-1" class="tsd-anchor"></a>
+						<h3>total</h3>
+						<div class="tsd-signature tsd-kind-icon">total<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;共&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:42</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.type-1" class="tsd-anchor"></a>
+						<h3>type</h3>
+						<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;类型&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:38</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.update-1" class="tsd-anchor"></a>
+						<h3>update</h3>
+						<div class="tsd-signature tsd-kind-icon">update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;更新&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:23</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.update_failed-1" class="tsd-anchor"></a>
+						<h3>update_<wbr>failed</h3>
+						<div class="tsd-signature tsd-kind-icon">update_<wbr>failed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;更新失败&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:52</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.username-1" class="tsd-anchor"></a>
+						<h3>username</h3>
+						<div class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;用户名&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:25</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.value-1" class="tsd-anchor"></a>
+						<h3>value</h3>
+						<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;值&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:35</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.view_detail-1" class="tsd-anchor"></a>
+						<h3>view_<wbr>detail</h3>
+						<div class="tsd-signature tsd-kind-icon">view_<wbr>detail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;查看详情&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:82</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="zh.view_yaml-1" class="tsd-anchor"></a>
+						<h3>view_<wbr>yaml</h3>
+						<div class="tsd-signature tsd-kind-icon">view_<wbr>yaml<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;查看YAML&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in packages/alauda-common-lib/src/translate/i18n.core.zh.ts:83</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="translate.html">translate</a>
+						<ul>
+							<li class=" tsd-kind-namespace tsd-parent-kind-module tsd-is-not-exported">
+								<a href="translate.__global.html">__global</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#core_translations" class="tsd-kind-icon">CORE_<wbr>TRANSLATIONS</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#default_locale" class="tsd-kind-icon">DEFAULT_<wbr>LOCALE</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#default_locales" class="tsd-kind-icon">DEFAULT_<wbr>LOCALES</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#default_remote_url" class="tsd-kind-icon">DEFAULT_<wbr>REMOTE_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#fallback_locale" class="tsd-kind-icon">FALLBACK_<wbr>LOCALE</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#locale_placeholder_regex" class="tsd-kind-icon">LOCALE_<wbr>PLACEHOLDER_<wbr>REGEX</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#locale_storage" class="tsd-kind-icon">LOCALE_<wbr>STORAGE</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#locale" class="tsd-kind-icon">Locale</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#token_default_locale" class="tsd-kind-icon">TOKEN_<wbr>DEFAULT_<wbr>LOCALE</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#token_locale" class="tsd-kind-icon">TOKEN_<wbr>LOCALE</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#token_locales" class="tsd-kind-icon">TOKEN_<wbr>LOCALES</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#token_loose" class="tsd-kind-icon">TOKEN_<wbr>LOOSE</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#token_remote_translations" class="tsd-kind-icon">TOKEN_<wbr>REMOTE_<wbr>TRANSLATIONS</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#token_remote_url" class="tsd-kind-icon">TOKEN_<wbr>REMOTE_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#token_translations" class="tsd-kind-icon">TOKEN_<wbr>TRANSLATIONS</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#translatekey" class="tsd-kind-icon">Translate<wbr>Key</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#translatemodule" class="tsd-kind-icon">Translate<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#translateoptions" class="tsd-kind-icon">Translate<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#translatepipe" class="tsd-kind-icon">Translate<wbr>Pipe</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#translateservice" class="tsd-kind-icon">Translate<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#translation" class="tsd-kind-icon">Translation</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#translations" class="tsd-kind-icon">Translations</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#getbrowserlang" class="tsd-kind-icon">get<wbr>Browser<wbr>Lang</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="translate.html#getlang" class="tsd-kind-icon">get<wbr>Lang</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="../enums/translate.locale-1.html" class="tsd-kind-icon">Locale</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/translate.translatemodule-1.html" class="tsd-kind-icon">Translate<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/translate.translatepipe-1.html" class="tsd-kind-icon">Translate<wbr>Pipe</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/translate.translateservice-1.html" class="tsd-kind-icon">Translate<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/translate.translateoptions-1.html" class="tsd-kind-icon">Translate<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/translate.translation-1.html" class="tsd-kind-icon">Translation</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="translate.html#translatekey-1" class="tsd-kind-icon">Translate<wbr>Key</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="translate.html#translations-1" class="tsd-kind-icon">Translations</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#core_translations-1" class="tsd-kind-icon">CORE_<wbr>TRANSLATIONS</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#default_locale-1" class="tsd-kind-icon">DEFAULT_<wbr>LOCALE</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#default_locales-1" class="tsd-kind-icon">DEFAULT_<wbr>LOCALES</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#default_remote_url-1" class="tsd-kind-icon">DEFAULT_<wbr>REMOTE_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
+						<a href="translate.html#exportable" class="tsd-kind-icon">EXPORTABLE</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#fallback_locale-1" class="tsd-kind-icon">FALLBACK_<wbr>LOCALE</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#locale_placeholder_regex-1" class="tsd-kind-icon">LOCALE_<wbr>PLACEHOLDER_<wbr>REGEX</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#locale_storage-1" class="tsd-kind-icon">LOCALE_<wbr>STORAGE</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#token_default_locale-1" class="tsd-kind-icon">TOKEN_<wbr>DEFAULT_<wbr>LOCALE</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#token_locale-1" class="tsd-kind-icon">TOKEN_<wbr>LOCALE</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#token_locales-1" class="tsd-kind-icon">TOKEN_<wbr>LOCALES</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#token_loose-1" class="tsd-kind-icon">TOKEN_<wbr>LOOSE</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#token_remote_translations-1" class="tsd-kind-icon">TOKEN_<wbr>REMOTE_<wbr>TRANSLATIONS</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#token_remote_url-1" class="tsd-kind-icon">TOKEN_<wbr>REMOTE_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="translate.html#token_translations-1" class="tsd-kind-icon">TOKEN_<wbr>TRANSLATIONS</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="translate.html#getbrowserlang-1" class="tsd-kind-icon">get<wbr>Browser<wbr>Lang</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="translate.html#getlang-1" class="tsd-kind-icon">get<wbr>Lang</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-module">
+						<a href="translate.html#en" class="tsd-kind-icon">en</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-module">
+						<a href="translate.html#zh" class="tsd-kind-icon">zh</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

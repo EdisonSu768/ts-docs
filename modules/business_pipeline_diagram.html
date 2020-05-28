@@ -1,0 +1,946 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>business/pipeline-diagram | @alauda/common-snippet</title>
+	<meta name="description" content="Documentation for @alauda/common-snippet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@alauda/common-snippet</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="business_pipeline_diagram.html">business/pipeline-diagram</a>
+				</li>
+			</ul>
+			<h1>Module business/pipeline-diagram</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>References</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#edge" class="tsd-kind-icon">Edge</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#pipelinediagram" class="tsd-kind-icon">Pipeline<wbr>Diagram</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#pipelinediagrammodule" class="tsd-kind-icon">Pipeline<wbr>Diagram<wbr>Module</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#pipelinelink" class="tsd-kind-icon">Pipeline<wbr>Link</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#pipelinenode" class="tsd-kind-icon">Pipeline<wbr>Node</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#pipelinepreviewdiagramcomponent" class="tsd-kind-icon">Pipeline<wbr>Preview<wbr>Diagram<wbr>Component</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#pipelinestatusdiagramcomponent" class="tsd-kind-icon">Pipeline<wbr>Status<wbr>Diagram<wbr>Component</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#pipelineviewcomponent" class="tsd-kind-icon">Pipeline<wbr>View<wbr>Component</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#stage" class="tsd-kind-icon">Stage</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#bypasslinksreducer" class="tsd-kind-icon">by<wbr>Pass<wbr>Links<wbr>Reducer</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#createnodeiteratorbystages" class="tsd-kind-icon">create<wbr>Node<wbr>Iterator<wbr>ByStages</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#linksreducer" class="tsd-kind-icon">links<wbr>Reducer</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#linkswithoutparallelsreducer" class="tsd-kind-icon">links<wbr>Without<wbr>Parallels<wbr>Reducer</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#nodesreducer" class="tsd-kind-icon">nodes<wbr>Reducer</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#nodeswithoutparallelsreducer" class="tsd-kind-icon">nodes<wbr>Without<wbr>Parallels<wbr>Reducer</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#sizereducer" class="tsd-kind-icon">size<wbr>Reducer</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#sizewithoutparallelsreducer" class="tsd-kind-icon">size<wbr>Without<wbr>Parallels<wbr>Reducer</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#transformpreviewdiagram" class="tsd-kind-icon">transform<wbr>Preview<wbr>Diagram</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#transformstatusdiagram" class="tsd-kind-icon">transform<wbr>Status<wbr>Diagram</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="business_pipeline_diagram.html#travel" class="tsd-kind-icon">travel</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/business_pipeline_diagram.pipelinediagrammodule-1.html" class="tsd-kind-icon">Pipeline<wbr>Diagram<wbr>Module</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/business_pipeline_diagram.pipelinepreviewdiagramcomponent-1.html" class="tsd-kind-icon">Pipeline<wbr>Preview<wbr>Diagram<wbr>Component</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/business_pipeline_diagram.pipelinestatusdiagramcomponent-1.html" class="tsd-kind-icon">Pipeline<wbr>Status<wbr>Diagram<wbr>Component</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/business_pipeline_diagram.pipelineviewcomponent-1.html" class="tsd-kind-icon">Pipeline<wbr>View<wbr>Component</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/business_pipeline_diagram.edge-1.html" class="tsd-kind-icon">Edge</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/business_pipeline_diagram.pipelinediagram-1.html" class="tsd-kind-icon">Pipeline<wbr>Diagram</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-kind-icon">Pipeline<wbr>Link</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-kind-icon">Pipeline<wbr>Node</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported"><a href="../interfaces/business_pipeline_diagram.pipelinepreview.html" class="tsd-kind-icon">Pipeline<wbr>Preview</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported"><a href="../interfaces/business_pipeline_diagram.pipelinestatus.html" class="tsd-kind-icon">Pipeline<wbr>Status</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-kind-icon">Stage</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported"><a href="business_pipeline_diagram.html#reducermap" class="tsd-kind-icon">Reducer<wbr>Map</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="business_pipeline_diagram.html#bypasslinksreducer-1" class="tsd-kind-icon">by<wbr>Pass<wbr>Links<wbr>Reducer</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported"><a href="business_pipeline_diagram.html#combinereducer" class="tsd-kind-icon">combine<wbr>Reducer</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="business_pipeline_diagram.html#createnodeiteratorbystages-1" class="tsd-kind-icon">create<wbr>Node<wbr>Iterator<wbr>ByStages</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="business_pipeline_diagram.html#linksreducer-1" class="tsd-kind-icon">links<wbr>Reducer</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="business_pipeline_diagram.html#linkswithoutparallelsreducer-1" class="tsd-kind-icon">links<wbr>Without<wbr>Parallels<wbr>Reducer</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="business_pipeline_diagram.html#nodesreducer-1" class="tsd-kind-icon">nodes<wbr>Reducer</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="business_pipeline_diagram.html#nodeswithoutparallelsreducer-1" class="tsd-kind-icon">nodes<wbr>Without<wbr>Parallels<wbr>Reducer</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="business_pipeline_diagram.html#sizereducer-1" class="tsd-kind-icon">size<wbr>Reducer</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="business_pipeline_diagram.html#sizewithoutparallelsreducer-1" class="tsd-kind-icon">size<wbr>Without<wbr>Parallels<wbr>Reducer</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="business_pipeline_diagram.html#steplinewithradius" class="tsd-kind-icon">step<wbr>Line<wbr>With<wbr>Radius</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="business_pipeline_diagram.html#transformpreviewdiagram-1" class="tsd-kind-icon">transform<wbr>Preview<wbr>Diagram</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="business_pipeline_diagram.html#transformstatusdiagram-1" class="tsd-kind-icon">transform<wbr>Status<wbr>Diagram</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="business_pipeline_diagram.html#travel-1" class="tsd-kind-icon">travel</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>References</h2>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="edge" class="tsd-anchor"></a>
+					<h3>Edge</h3>
+					Re-exports <a href="../interfaces/business_pipeline_diagram.edge-1.html">Edge</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="pipelinediagram" class="tsd-anchor"></a>
+					<h3>Pipeline<wbr>Diagram</h3>
+					Re-exports <a href="../interfaces/business_pipeline_diagram.pipelinediagram-1.html">PipelineDiagram</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="pipelinediagrammodule" class="tsd-anchor"></a>
+					<h3>Pipeline<wbr>Diagram<wbr>Module</h3>
+					Re-exports <a href="../classes/business_pipeline_diagram.pipelinediagrammodule-1.html">PipelineDiagramModule</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="pipelinelink" class="tsd-anchor"></a>
+					<h3>Pipeline<wbr>Link</h3>
+					Re-exports <a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html">PipelineLink</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="pipelinenode" class="tsd-anchor"></a>
+					<h3>Pipeline<wbr>Node</h3>
+					Re-exports <a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html">PipelineNode</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="pipelinepreviewdiagramcomponent" class="tsd-anchor"></a>
+					<h3>Pipeline<wbr>Preview<wbr>Diagram<wbr>Component</h3>
+					Re-exports <a href="../classes/business_pipeline_diagram.pipelinepreviewdiagramcomponent-1.html">PipelinePreviewDiagramComponent</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="pipelinestatusdiagramcomponent" class="tsd-anchor"></a>
+					<h3>Pipeline<wbr>Status<wbr>Diagram<wbr>Component</h3>
+					Re-exports <a href="../classes/business_pipeline_diagram.pipelinestatusdiagramcomponent-1.html">PipelineStatusDiagramComponent</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="pipelineviewcomponent" class="tsd-anchor"></a>
+					<h3>Pipeline<wbr>View<wbr>Component</h3>
+					Re-exports <a href="../classes/business_pipeline_diagram.pipelineviewcomponent-1.html">PipelineViewComponent</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="stage" class="tsd-anchor"></a>
+					<h3>Stage</h3>
+					Re-exports <a href="../interfaces/business_pipeline_diagram.stage-1.html">Stage</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="bypasslinksreducer" class="tsd-anchor"></a>
+					<h3>by<wbr>Pass<wbr>Links<wbr>Reducer</h3>
+					Re-exports <a href="business_pipeline_diagram.html#bypasslinksreducer-1">byPassLinksReducer</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="createnodeiteratorbystages" class="tsd-anchor"></a>
+					<h3>create<wbr>Node<wbr>Iterator<wbr>ByStages</h3>
+					Re-exports <a href="business_pipeline_diagram.html#createnodeiteratorbystages-1">createNodeIteratorByStages</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="linksreducer" class="tsd-anchor"></a>
+					<h3>links<wbr>Reducer</h3>
+					Re-exports <a href="business_pipeline_diagram.html#linksreducer-1">linksReducer</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="linkswithoutparallelsreducer" class="tsd-anchor"></a>
+					<h3>links<wbr>Without<wbr>Parallels<wbr>Reducer</h3>
+					Re-exports <a href="business_pipeline_diagram.html#linkswithoutparallelsreducer-1">linksWithoutParallelsReducer</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="nodesreducer" class="tsd-anchor"></a>
+					<h3>nodes<wbr>Reducer</h3>
+					Re-exports <a href="business_pipeline_diagram.html#nodesreducer-1">nodesReducer</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="nodeswithoutparallelsreducer" class="tsd-anchor"></a>
+					<h3>nodes<wbr>Without<wbr>Parallels<wbr>Reducer</h3>
+					Re-exports <a href="business_pipeline_diagram.html#nodeswithoutparallelsreducer-1">nodesWithoutParallelsReducer</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="sizereducer" class="tsd-anchor"></a>
+					<h3>size<wbr>Reducer</h3>
+					Re-exports <a href="business_pipeline_diagram.html#sizereducer-1">sizeReducer</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="sizewithoutparallelsreducer" class="tsd-anchor"></a>
+					<h3>size<wbr>Without<wbr>Parallels<wbr>Reducer</h3>
+					Re-exports <a href="business_pipeline_diagram.html#sizewithoutparallelsreducer-1">sizeWithoutParallelsReducer</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="transformpreviewdiagram" class="tsd-anchor"></a>
+					<h3>transform<wbr>Preview<wbr>Diagram</h3>
+					Re-exports <a href="business_pipeline_diagram.html#transformpreviewdiagram-1">transformPreviewDiagram</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="transformstatusdiagram" class="tsd-anchor"></a>
+					<h3>transform<wbr>Status<wbr>Diagram</h3>
+					Re-exports <a href="business_pipeline_diagram.html#transformstatusdiagram-1">transformStatusDiagram</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="travel" class="tsd-anchor"></a>
+					<h3>travel</h3>
+					Re-exports <a href="business_pipeline_diagram.html#travel-1">travel</a>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
+					<a name="reducermap" class="tsd-anchor"></a>
+					<h3>Reducer<wbr>Map</h3>
+					<div class="tsd-signature tsd-kind-icon">Reducer<wbr>Map&lt;TResult, T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/models.ts:317</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>TResult</h4>
+						</li>
+						<li>
+							<h4>T</h4>
+						</li>
+					</ul>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="bypasslinksreducer-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> by<wbr>Pass<wbr>Links<wbr>Reducer</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">by<wbr>Pass<wbr>Links<wbr>Reducer&lt;T&gt;<span class="tsd-signature-symbol">(</span>accum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>foundSkip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>links<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span>, item<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>foundSkip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>links<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/models.ts:241</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>accum: <span class="tsd-signature-symbol">{ </span>foundSkip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>links<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>found<wbr>Skip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>links<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5>item: <a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>foundSkip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>links<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5>found<wbr>Skip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>links<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
+					<a name="combinereducer" class="tsd-anchor"></a>
+					<h3>combine<wbr>Reducer</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">combine<wbr>Reducer&lt;TResult, T&gt;<span class="tsd-signature-symbol">(</span>reducers<span class="tsd-signature-symbol">: </span><a href="business_pipeline_diagram.html#reducermap" class="tsd-signature-type">ReducerMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>accum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TResult</span>, item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TResult</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/models.ts:321</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>TResult</h4>
+								</li>
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>reducers: <a href="business_pipeline_diagram.html#reducermap" class="tsd-signature-type">ReducerMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>accum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TResult</span>, item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TResult</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-signature">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TResult</span>, item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TResult</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5>accum: <span class="tsd-signature-type">TResult</span></h5>
+												</li>
+												<li>
+													<h5>item: <span class="tsd-signature-type">T</span></h5>
+												</li>
+											</ul>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TResult</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="createnodeiteratorbystages-1" class="tsd-anchor"></a>
+					<h3>create<wbr>Node<wbr>Iterator<wbr>ByStages</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Node<wbr>Iterator<wbr>ByStages<span class="tsd-signature-symbol">(</span>stages<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/models.ts:50</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>stages: <a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="linksreducer-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> links<wbr>Reducer</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">links<wbr>Reducer&lt;T&gt;<span class="tsd-signature-symbol">(</span>accum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>links<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span>, item<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>links<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/models.ts:190</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>accum: <span class="tsd-signature-symbol">{ </span>links<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>links<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5>item: <a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>links<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5>links<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="linkswithoutparallelsreducer-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> links<wbr>Without<wbr>Parallels<wbr>Reducer</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">links<wbr>Without<wbr>Parallels<wbr>Reducer&lt;T&gt;<span class="tsd-signature-symbol">(</span>accum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>links<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span>, item<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>links<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/models.ts:290</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>accum: <span class="tsd-signature-symbol">{ </span>links<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>links<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5>item: <a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>links<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5>links<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-signature-type">PipelineLink</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>pending<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="nodesreducer-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> nodes<wbr>Reducer</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">nodes<wbr>Reducer&lt;T&gt;<span class="tsd-signature-symbol">(</span>accum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span>, item<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/models.ts:157</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>accum: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>item: <a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="nodeswithoutparallelsreducer-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> nodes<wbr>Without<wbr>Parallels<wbr>Reducer</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">nodes<wbr>Without<wbr>Parallels<wbr>Reducer&lt;T&gt;<span class="tsd-signature-symbol">(</span>accum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span>, item<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/models.ts:162</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>accum: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>item: <a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="sizereducer-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> size<wbr>Reducer</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">size<wbr>Reducer&lt;T&gt;<span class="tsd-signature-symbol">(</span>accum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span>, item<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/models.ts:172</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>accum: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+								</li>
+								<li>
+									<h5>item: <a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="sizewithoutparallelsreducer-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> size<wbr>Without<wbr>Parallels<wbr>Reducer</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">size<wbr>Without<wbr>Parallels<wbr>Reducer&lt;T&gt;<span class="tsd-signature-symbol">(</span>accum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span>, _item<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/models.ts:181</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>accum: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+								</li>
+								<li>
+									<h5>_item: <a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="steplinewithradius" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> step<wbr>Line<wbr>With<wbr>Radius</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">step<wbr>Line<wbr>With<wbr>Radius<span class="tsd-signature-symbol">(</span>radius<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/line.ts:6</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>radius: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="transformpreviewdiagram-1" class="tsd-anchor"></a>
+					<h3>transform<wbr>Preview<wbr>Diagram</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">transform<wbr>Preview<wbr>Diagram<span class="tsd-signature-symbol">(</span>stages<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinediagram-1.html" class="tsd-signature-type">PipelineDiagram</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/models.ts:374</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>stages: <a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/business_pipeline_diagram.pipelinediagram-1.html" class="tsd-signature-type">PipelineDiagram</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="transformstatusdiagram-1" class="tsd-anchor"></a>
+					<h3>transform<wbr>Status<wbr>Diagram</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">transform<wbr>Status<wbr>Diagram<span class="tsd-signature-symbol">(</span>stages<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinediagram-1.html" class="tsd-signature-type">PipelineDiagram</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/models.ts:353</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>stages: <a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/business_pipeline_diagram.pipelinediagram-1.html" class="tsd-signature-type">PipelineDiagram</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="travel-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> travel</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">travel&lt;T, TResult&gt;<span class="tsd-signature-symbol">(</span>nodes<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span>, reducer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>accum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TResult</span>, item<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TResult</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/business/pipeline-diagram/models.ts:144</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>TResult</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>nodes: <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>reducer: <span class="tsd-signature-symbol">(</span>accum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TResult</span>, item<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TResult</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>accum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TResult</span>, item<span class="tsd-signature-symbol">: </span><a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TResult</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>accum: <span class="tsd-signature-type">TResult</span></h5>
+														</li>
+														<li>
+															<h5>item: <a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-signature-type">PipelineNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TResult</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TResult</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="business_pipeline_diagram.html">business/pipeline-<wbr>diagram</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#edge" class="tsd-kind-icon">Edge</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#pipelinediagram" class="tsd-kind-icon">Pipeline<wbr>Diagram</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#pipelinediagrammodule" class="tsd-kind-icon">Pipeline<wbr>Diagram<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#pipelinelink" class="tsd-kind-icon">Pipeline<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#pipelinenode" class="tsd-kind-icon">Pipeline<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#pipelinepreviewdiagramcomponent" class="tsd-kind-icon">Pipeline<wbr>Preview<wbr>Diagram<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#pipelinestatusdiagramcomponent" class="tsd-kind-icon">Pipeline<wbr>Status<wbr>Diagram<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#pipelineviewcomponent" class="tsd-kind-icon">Pipeline<wbr>View<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#stage" class="tsd-kind-icon">Stage</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#bypasslinksreducer" class="tsd-kind-icon">by<wbr>Pass<wbr>Links<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#createnodeiteratorbystages" class="tsd-kind-icon">create<wbr>Node<wbr>Iterator<wbr>ByStages</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#linksreducer" class="tsd-kind-icon">links<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#linkswithoutparallelsreducer" class="tsd-kind-icon">links<wbr>Without<wbr>Parallels<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#nodesreducer" class="tsd-kind-icon">nodes<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#nodeswithoutparallelsreducer" class="tsd-kind-icon">nodes<wbr>Without<wbr>Parallels<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#sizereducer" class="tsd-kind-icon">size<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#sizewithoutparallelsreducer" class="tsd-kind-icon">size<wbr>Without<wbr>Parallels<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#transformpreviewdiagram" class="tsd-kind-icon">transform<wbr>Preview<wbr>Diagram</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#transformstatusdiagram" class="tsd-kind-icon">transform<wbr>Status<wbr>Diagram</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#travel" class="tsd-kind-icon">travel</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/business_pipeline_diagram.pipelinediagrammodule-1.html" class="tsd-kind-icon">Pipeline<wbr>Diagram<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/business_pipeline_diagram.pipelinepreviewdiagramcomponent-1.html" class="tsd-kind-icon">Pipeline<wbr>Preview<wbr>Diagram<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/business_pipeline_diagram.pipelinestatusdiagramcomponent-1.html" class="tsd-kind-icon">Pipeline<wbr>Status<wbr>Diagram<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/business_pipeline_diagram.pipelineviewcomponent-1.html" class="tsd-kind-icon">Pipeline<wbr>View<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/business_pipeline_diagram.edge-1.html" class="tsd-kind-icon">Edge</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/business_pipeline_diagram.pipelinediagram-1.html" class="tsd-kind-icon">Pipeline<wbr>Diagram</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/business_pipeline_diagram.pipelinelink-1.html" class="tsd-kind-icon">Pipeline<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/business_pipeline_diagram.pipelinenode-1.html" class="tsd-kind-icon">Pipeline<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../interfaces/business_pipeline_diagram.pipelinepreview.html" class="tsd-kind-icon">Pipeline<wbr>Preview</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../interfaces/business_pipeline_diagram.pipelinestatus.html" class="tsd-kind-icon">Pipeline<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/business_pipeline_diagram.stage-1.html" class="tsd-kind-icon">Stage</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="business_pipeline_diagram.html#reducermap" class="tsd-kind-icon">Reducer<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="business_pipeline_diagram.html#bypasslinksreducer-1" class="tsd-kind-icon">by<wbr>Pass<wbr>Links<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="business_pipeline_diagram.html#combinereducer" class="tsd-kind-icon">combine<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#createnodeiteratorbystages-1" class="tsd-kind-icon">create<wbr>Node<wbr>Iterator<wbr>ByStages</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="business_pipeline_diagram.html#linksreducer-1" class="tsd-kind-icon">links<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="business_pipeline_diagram.html#linkswithoutparallelsreducer-1" class="tsd-kind-icon">links<wbr>Without<wbr>Parallels<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="business_pipeline_diagram.html#nodesreducer-1" class="tsd-kind-icon">nodes<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="business_pipeline_diagram.html#nodeswithoutparallelsreducer-1" class="tsd-kind-icon">nodes<wbr>Without<wbr>Parallels<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="business_pipeline_diagram.html#sizereducer-1" class="tsd-kind-icon">size<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="business_pipeline_diagram.html#sizewithoutparallelsreducer-1" class="tsd-kind-icon">size<wbr>Without<wbr>Parallels<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#steplinewithradius" class="tsd-kind-icon">step<wbr>Line<wbr>With<wbr>Radius</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#transformpreviewdiagram-1" class="tsd-kind-icon">transform<wbr>Preview<wbr>Diagram</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="business_pipeline_diagram.html#transformstatusdiagram-1" class="tsd-kind-icon">transform<wbr>Status<wbr>Diagram</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="business_pipeline_diagram.html#travel-1" class="tsd-kind-icon">travel</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

@@ -1,0 +1,860 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>permission | @alauda/common-snippet</title>
+	<meta name="description" content="Documentation for @alauda/common-snippet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@alauda/common-snippet</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="permission.html">permission</a>
+				</li>
+			</ul>
+			<h1>Module permission</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<a href="#k8s-资源操作权限-api" id="k8s-资源操作权限-api" style="color: inherit; text-decoration: none;">
+							<h1>K8s 资源操作权限 API</h1>
+						</a>
+						<a href="#services" id="services" style="color: inherit; text-decoration: none;">
+							<h2>Services</h2>
+						</a>
+						<a href="#k8spermissionservice" id="k8spermissionservice" style="color: inherit; text-decoration: none;">
+							<h3><code>K8sPermissionService</code></h3>
+						</a>
+						<ul>
+							<li><code>#getAccess</code>: 获取对 K8s 资源的操作权限，一般和 <code>isAllowed</code> 操作符配合使用</li>
+							<li><code>#isAllowed</code>: 根据已经获取到的操作权限对象或列表转化为更方便使用的权限 record 或数组</li>
+						</ul>
+						<a href="#helpers" id="helpers" style="color: inherit; text-decoration: none;">
+							<h2>Helpers</h2>
+						</a>
+						<a href="#isallowed" id="isallowed" style="color: inherit; text-decoration: none;">
+							<h3><code>isAllowed</code></h3>
+						</a>
+						<p>自定义 <code>rxjs</code> 操作符，辅助将已获取权限对象或列表转化为更方便使用的权限 record 或数组，当时直接使用上述 <code>getAccess</code> 方法时需要此操作符来辅助转化权限使用</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>References</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#all_actions" class="tsd-kind-icon">ALL_<wbr>ACTIONS</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#adminguardservice" class="tsd-kind-icon">Admin<wbr>Guard<wbr>Service</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#allpermissions" class="tsd-kind-icon">All<wbr>Permissions</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#common_readable_actions" class="tsd-kind-icon">COMMON_<wbr>READABLE_<wbr>ACTIONS</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#common_writable_actions" class="tsd-kind-icon">COMMON_<wbr>WRITABLE_<wbr>ACTIONS</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#commonreadablepermissions" class="tsd-kind-icon">Common<wbr>Readable<wbr>Permissions</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#commonwritablepermissions" class="tsd-kind-icon">Common<wbr>Writable<wbr>Permissions</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8spermissionbaseparams" class="tsd-kind-icon">K8s<wbr>Permission<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8spermissionservice" class="tsd-kind-icon">K8s<wbr>Permission<wbr>Service</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8spermissiontransformable" class="tsd-kind-icon">K8s<wbr>Permission<wbr>Transformable</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8sresourcepermissionbaseparams" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8sresourcepermissionmultiparams" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Multi<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8sresourcepermissionnoneparams" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>None<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8sresourcepermissionparams" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8sresourcepermissionsingleparams" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Single<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8sresourcepermissionwithtransformparams" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>With<wbr>Transform<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8stypepermissionactionsparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Actions<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8stypepermissionbaseparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8stypepermissionmatrixparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Matrix<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8stypepermissionmultiparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Multi<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8stypepermissionnamesparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Names<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8stypepermissionnoneparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>None<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8stypepermissionparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8stypepermissionsingleparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Single<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#k8stypepermissionwithtransformparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>With<wbr>Transform<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#readable_actions" class="tsd-kind-icon">READABLE_<wbr>ACTIONS</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#readablepermissions" class="tsd-kind-icon">Readable<wbr>Permissions</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#writable_actions" class="tsd-kind-icon">WRITABLE_<wbr>ACTIONS</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#writablepermissions" class="tsd-kind-icon">Writable<wbr>Permissions</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#isadmin" class="tsd-kind-icon">is<wbr>Admin</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="permission.html#isallowed" class="tsd-kind-icon">is<wbr>Allowed</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/permission.adminguardservice-1.html" class="tsd-kind-icon">Admin<wbr>Guard<wbr>Service</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/permission.k8spermissionservice-1.html" class="tsd-kind-icon">K8s<wbr>Permission<wbr>Service</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/permission.k8spermissionbaseparams-1.html" class="tsd-kind-icon">K8s<wbr>Permission<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/permission.k8spermissiontransformable-1.html" class="tsd-kind-icon">K8s<wbr>Permission<wbr>Transformable</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/permission.k8sresourcepermissionbaseparams-1.html" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/permission.k8sresourcepermissionmultiparams-1.html" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Multi<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/permission.k8sresourcepermissionnoneparams-1.html" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>None<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/permission.k8sresourcepermissionsingleparams-1.html" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Single<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/permission.k8stypepermissionactionsparams-1.html" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Actions<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/permission.k8stypepermissionbaseparams-1.html" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Base<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/permission.k8stypepermissionmatrixparams-1.html" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Matrix<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/permission.k8stypepermissionnamesparams-1.html" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Names<wbr>Params</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="permission.html#allpermissions-1" class="tsd-kind-icon">All<wbr>Permissions</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="permission.html#commonreadablepermissions-1" class="tsd-kind-icon">Common<wbr>Readable<wbr>Permissions</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="permission.html#commonwritablepermissions-1" class="tsd-kind-icon">Common<wbr>Writable<wbr>Permissions</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="permission.html#k8sresourcepermissionparams-1" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="permission.html#k8sresourcepermissionwithtransformparams-1" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>With<wbr>Transform<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="permission.html#k8stypepermissionmultiparams-1" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Multi<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="permission.html#k8stypepermissionnoneparams-1" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>None<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="permission.html#k8stypepermissionparams-1" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="permission.html#k8stypepermissionsingleparams-1" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Single<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="permission.html#k8stypepermissionwithtransformparams-1" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>With<wbr>Transform<wbr>Params</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="permission.html#readablepermissions-1" class="tsd-kind-icon">Readable<wbr>Permissions</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="permission.html#writablepermissions-1" class="tsd-kind-icon">Writable<wbr>Permissions</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="permission.html#all_actions-1" class="tsd-kind-icon">ALL_<wbr>ACTIONS</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="permission.html#common_readable_actions-1" class="tsd-kind-icon">COMMON_<wbr>READABLE_<wbr>ACTIONS</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="permission.html#common_writable_actions-1" class="tsd-kind-icon">COMMON_<wbr>WRITABLE_<wbr>ACTIONS</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="permission.html#readable_actions-1" class="tsd-kind-icon">READABLE_<wbr>ACTIONS</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="permission.html#writable_actions-1" class="tsd-kind-icon">WRITABLE_<wbr>ACTIONS</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="permission.html#isadmin-1" class="tsd-kind-icon">is<wbr>Admin</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="permission.html#isallowed-1" class="tsd-kind-icon">is<wbr>Allowed</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>References</h2>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="all_actions" class="tsd-anchor"></a>
+					<h3>ALL_<wbr>ACTIONS</h3>
+					Re-exports <a href="permission.html#all_actions-1">ALL_ACTIONS</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="adminguardservice" class="tsd-anchor"></a>
+					<h3>Admin<wbr>Guard<wbr>Service</h3>
+					Re-exports <a href="../classes/permission.adminguardservice-1.html">AdminGuardService</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="allpermissions" class="tsd-anchor"></a>
+					<h3>All<wbr>Permissions</h3>
+					Re-exports <a href="permission.html#allpermissions-1">AllPermissions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="common_readable_actions" class="tsd-anchor"></a>
+					<h3>COMMON_<wbr>READABLE_<wbr>ACTIONS</h3>
+					Re-exports <a href="permission.html#common_readable_actions-1">COMMON_READABLE_ACTIONS</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="common_writable_actions" class="tsd-anchor"></a>
+					<h3>COMMON_<wbr>WRITABLE_<wbr>ACTIONS</h3>
+					Re-exports <a href="permission.html#common_writable_actions-1">COMMON_WRITABLE_ACTIONS</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="commonreadablepermissions" class="tsd-anchor"></a>
+					<h3>Common<wbr>Readable<wbr>Permissions</h3>
+					Re-exports <a href="permission.html#commonreadablepermissions-1">CommonReadablePermissions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="commonwritablepermissions" class="tsd-anchor"></a>
+					<h3>Common<wbr>Writable<wbr>Permissions</h3>
+					Re-exports <a href="permission.html#commonwritablepermissions-1">CommonWritablePermissions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8spermissionbaseparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Permission<wbr>Base<wbr>Params</h3>
+					Re-exports <a href="../interfaces/permission.k8spermissionbaseparams-1.html">K8sPermissionBaseParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8spermissionservice" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Permission<wbr>Service</h3>
+					Re-exports <a href="../classes/permission.k8spermissionservice-1.html">K8sPermissionService</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8spermissiontransformable" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Permission<wbr>Transformable</h3>
+					Re-exports <a href="../interfaces/permission.k8spermissiontransformable-1.html">K8sPermissionTransformable</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8sresourcepermissionbaseparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Resource<wbr>Permission<wbr>Base<wbr>Params</h3>
+					Re-exports <a href="../interfaces/permission.k8sresourcepermissionbaseparams-1.html">K8sResourcePermissionBaseParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8sresourcepermissionmultiparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Resource<wbr>Permission<wbr>Multi<wbr>Params</h3>
+					Re-exports <a href="../interfaces/permission.k8sresourcepermissionmultiparams-1.html">K8sResourcePermissionMultiParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8sresourcepermissionnoneparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Resource<wbr>Permission<wbr>None<wbr>Params</h3>
+					Re-exports <a href="../interfaces/permission.k8sresourcepermissionnoneparams-1.html">K8sResourcePermissionNoneParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8sresourcepermissionparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Resource<wbr>Permission<wbr>Params</h3>
+					Re-exports <a href="permission.html#k8sresourcepermissionparams-1">K8sResourcePermissionParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8sresourcepermissionsingleparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Resource<wbr>Permission<wbr>Single<wbr>Params</h3>
+					Re-exports <a href="../interfaces/permission.k8sresourcepermissionsingleparams-1.html">K8sResourcePermissionSingleParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8sresourcepermissionwithtransformparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Resource<wbr>Permission<wbr>With<wbr>Transform<wbr>Params</h3>
+					Re-exports <a href="permission.html#k8sresourcepermissionwithtransformparams-1">K8sResourcePermissionWithTransformParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8stypepermissionactionsparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>Actions<wbr>Params</h3>
+					Re-exports <a href="../interfaces/permission.k8stypepermissionactionsparams-1.html">K8sTypePermissionActionsParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8stypepermissionbaseparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>Base<wbr>Params</h3>
+					Re-exports <a href="../interfaces/permission.k8stypepermissionbaseparams-1.html">K8sTypePermissionBaseParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8stypepermissionmatrixparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>Matrix<wbr>Params</h3>
+					Re-exports <a href="../interfaces/permission.k8stypepermissionmatrixparams-1.html">K8sTypePermissionMatrixParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8stypepermissionmultiparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>Multi<wbr>Params</h3>
+					Re-exports <a href="permission.html#k8stypepermissionmultiparams-1">K8sTypePermissionMultiParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8stypepermissionnamesparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>Names<wbr>Params</h3>
+					Re-exports <a href="../interfaces/permission.k8stypepermissionnamesparams-1.html">K8sTypePermissionNamesParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8stypepermissionnoneparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>None<wbr>Params</h3>
+					Re-exports <a href="permission.html#k8stypepermissionnoneparams-1">K8sTypePermissionNoneParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8stypepermissionparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>Params</h3>
+					Re-exports <a href="permission.html#k8stypepermissionparams-1">K8sTypePermissionParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8stypepermissionsingleparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>Single<wbr>Params</h3>
+					Re-exports <a href="permission.html#k8stypepermissionsingleparams-1">K8sTypePermissionSingleParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8stypepermissionwithtransformparams" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>With<wbr>Transform<wbr>Params</h3>
+					Re-exports <a href="permission.html#k8stypepermissionwithtransformparams-1">K8sTypePermissionWithTransformParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="readable_actions" class="tsd-anchor"></a>
+					<h3>READABLE_<wbr>ACTIONS</h3>
+					Re-exports <a href="permission.html#readable_actions-1">READABLE_ACTIONS</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="readablepermissions" class="tsd-anchor"></a>
+					<h3>Readable<wbr>Permissions</h3>
+					Re-exports <a href="permission.html#readablepermissions-1">ReadablePermissions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="writable_actions" class="tsd-anchor"></a>
+					<h3>WRITABLE_<wbr>ACTIONS</h3>
+					Re-exports <a href="permission.html#writable_actions-1">WRITABLE_ACTIONS</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="writablepermissions" class="tsd-anchor"></a>
+					<h3>Writable<wbr>Permissions</h3>
+					Re-exports <a href="permission.html#writablepermissions-1">WritablePermissions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="isadmin" class="tsd-anchor"></a>
+					<h3>is<wbr>Admin</h3>
+					Re-exports <a href="permission.html#isadmin-1">isAdmin</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="isallowed" class="tsd-anchor"></a>
+					<h3>is<wbr>Allowed</h3>
+					Re-exports <a href="permission.html#isallowed-1">isAllowed</a>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="allpermissions-1" class="tsd-anchor"></a>
+					<h3>All<wbr>Permissions</h3>
+					<div class="tsd-signature tsd-kind-icon">All<wbr>Permissions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">ALL_ACTIONS</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"all"</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:66</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="commonreadablepermissions-1" class="tsd-anchor"></a>
+					<h3>Common<wbr>Readable<wbr>Permissions</h3>
+					<div class="tsd-signature tsd-kind-icon">Common<wbr>Readable<wbr>Permissions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">COMMON_READABLE_ACTIONS</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:58</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="commonwritablepermissions-1" class="tsd-anchor"></a>
+					<h3>Common<wbr>Writable<wbr>Permissions</h3>
+					<div class="tsd-signature tsd-kind-icon">Common<wbr>Writable<wbr>Permissions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">COMMON_WRITABLE_ACTIONS</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:62</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="k8sresourcepermissionparams-1" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Resource<wbr>Permission<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Params&lt;T, K&gt;<span class="tsd-signature-symbol">:</span> <a href="../interfaces/permission.k8sresourcepermissionnoneparams-1.html" class="tsd-signature-type">K8sResourcePermissionNoneParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/permission.k8sresourcepermissionsingleparams-1.html" class="tsd-signature-type">K8sResourcePermissionSingleParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/permission.k8sresourcepermissionmultiparams-1.html" class="tsd-signature-type">K8sResourcePermissionMultiParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:162</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+						<li>
+							<h4>K<span class="tsd-signature-symbol">: </span><a href="../enums/types.k8sresourceaction-1.html" class="tsd-signature-type">K8sResourceAction</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="k8sresourcepermissionwithtransformparams-1" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Resource<wbr>Permission<wbr>With<wbr>Transform<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>With<wbr>Transform<wbr>Params&lt;T, K, R&gt;<span class="tsd-signature-symbol">:</span> <a href="permission.html#k8sresourcepermissionparams" class="tsd-signature-type">K8sResourcePermissionParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/permission.k8spermissiontransformable-1.html" class="tsd-signature-type">K8sPermissionTransformable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:170</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+						<li>
+							<h4>K<span class="tsd-signature-symbol">: </span><a href="../enums/types.k8sresourceaction-1.html" class="tsd-signature-type">K8sResourceAction</a></h4>
+						</li>
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="k8stypepermissionmultiparams-1" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>Multi<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Multi<wbr>Params&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="../interfaces/permission.k8stypepermissionactionsparams-1.html" class="tsd-signature-type">K8sTypePermissionActionsParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/permission.k8stypepermissionnamesparams-1.html" class="tsd-signature-type">K8sTypePermissionNamesParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:112</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../enums/types.k8sresourceaction-1.html" class="tsd-signature-type">K8sResourceAction</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="k8stypepermissionnoneparams-1" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>None<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>None<wbr>Params<span class="tsd-signature-symbol">:</span> <a href="../interfaces/permission.k8stypepermissionbaseparams-1.html" class="tsd-signature-type">K8sTypePermissionBaseParams</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>action<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:81</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="k8stypepermissionparams-1" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Params&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="permission.html#k8stypepermissionnoneparams" class="tsd-signature-type">K8sTypePermissionNoneParams</a><span class="tsd-signature-symbol"> | </span><a href="permission.html#k8stypepermissionsingleparams" class="tsd-signature-type">K8sTypePermissionSingleParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="permission.html#k8stypepermissionmultiparams" class="tsd-signature-type">K8sTypePermissionMultiParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/permission.k8stypepermissionmatrixparams-1.html" class="tsd-signature-type">K8sTypePermissionMatrixParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:122</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../enums/types.k8sresourceaction-1.html" class="tsd-signature-type">K8sResourceAction</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="k8stypepermissionsingleparams-1" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>Single<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Single<wbr>Params&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="../interfaces/permission.k8stypepermissionbaseparams-1.html" class="tsd-signature-type">K8sTypePermissionBaseParams</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>action<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>action<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:86</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../enums/types.k8sresourceaction-1.html" class="tsd-signature-type">K8sResourceAction</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="k8stypepermissionwithtransformparams-1" class="tsd-anchor"></a>
+					<h3>K8s<wbr>Type<wbr>Permission<wbr>With<wbr>Transform<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>With<wbr>Transform<wbr>Params&lt;T, K&gt;<span class="tsd-signature-symbol">:</span> <a href="permission.html#k8stypepermissionparams" class="tsd-signature-type">K8sTypePermissionParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/permission.k8spermissiontransformable-1.html" class="tsd-signature-type">K8sPermissionTransformable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:132</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="../enums/types.k8sresourceaction-1.html" class="tsd-signature-type">K8sResourceAction</a></h4>
+						</li>
+						<li>
+							<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="readablepermissions-1" class="tsd-anchor"></a>
+					<h3>Readable<wbr>Permissions</h3>
+					<div class="tsd-signature tsd-kind-icon">Readable<wbr>Permissions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">READABLE_ACTIONS</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:50</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="writablepermissions-1" class="tsd-anchor"></a>
+					<h3>Writable<wbr>Permissions</h3>
+					<div class="tsd-signature tsd-kind-icon">Writable<wbr>Permissions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">WRITABLE_ACTIONS</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:54</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="all_actions-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> ALL_<wbr>ACTIONS</h3>
+					<div class="tsd-signature tsd-kind-icon">ALL_<wbr>ACTIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><a href="../enums/types.k8sresourceaction-1.html#create" class="tsd-signature-type">CREATE</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#delete" class="tsd-signature-type">DELETE</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#delete_collection" class="tsd-signature-type">DELETE_COLLECTION</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#get" class="tsd-signature-type">GET</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#list" class="tsd-signature-type">LIST</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#patch" class="tsd-signature-type">PATCH</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#proxy" class="tsd-signature-type">PROXY</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#redirect" class="tsd-signature-type">REDIRECT</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#update" class="tsd-signature-type">UPDATE</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#watch" class="tsd-signature-type">WATCH</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol"> = [K8sResourceAction.CREATE,K8sResourceAction.DELETE,K8sResourceAction.DELETE_COLLECTION,K8sResourceAction.GET,K8sResourceAction.LIST,K8sResourceAction.PATCH,K8sResourceAction.PROXY,K8sResourceAction.REDIRECT,K8sResourceAction.UPDATE,K8sResourceAction.WATCH,] as const</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:37</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="common_readable_actions-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> COMMON_<wbr>READABLE_<wbr>ACTIONS</h3>
+					<div class="tsd-signature tsd-kind-icon">COMMON_<wbr>READABLE_<wbr>ACTIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><a href="../enums/types.k8sresourceaction-1.html#get" class="tsd-signature-type">GET</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol"> = [K8sResourceAction.GET] as const</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:29</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="common_writable_actions-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> COMMON_<wbr>WRITABLE_<wbr>ACTIONS</h3>
+					<div class="tsd-signature tsd-kind-icon">COMMON_<wbr>WRITABLE_<wbr>ACTIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><a href="../enums/types.k8sresourceaction-1.html#create" class="tsd-signature-type">CREATE</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#delete" class="tsd-signature-type">DELETE</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#update" class="tsd-signature-type">UPDATE</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol"> = [K8sResourceAction.CREATE,K8sResourceAction.DELETE,K8sResourceAction.UPDATE,] as const</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:31</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="readable_actions-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> READABLE_<wbr>ACTIONS</h3>
+					<div class="tsd-signature tsd-kind-icon">READABLE_<wbr>ACTIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><a href="../enums/types.k8sresourceaction-1.html#get" class="tsd-signature-type">GET</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#list" class="tsd-signature-type">LIST</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#proxy" class="tsd-signature-type">PROXY</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#redirect" class="tsd-signature-type">REDIRECT</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#watch" class="tsd-signature-type">WATCH</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol"> = [K8sResourceAction.GET,K8sResourceAction.LIST,K8sResourceAction.PROXY,K8sResourceAction.REDIRECT,K8sResourceAction.WATCH,] as const</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:13</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="writable_actions-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> WRITABLE_<wbr>ACTIONS</h3>
+					<div class="tsd-signature tsd-kind-icon">WRITABLE_<wbr>ACTIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><a href="../enums/types.k8sresourceaction-1.html#create" class="tsd-signature-type">CREATE</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#delete" class="tsd-signature-type">DELETE</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#delete_collection" class="tsd-signature-type">DELETE_COLLECTION</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#patch" class="tsd-signature-type">PATCH</a><span class="tsd-signature-symbol">, </span><a href="../enums/types.k8sresourceaction-1.html#update" class="tsd-signature-type">UPDATE</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol"> = [K8sResourceAction.CREATE,K8sResourceAction.DELETE,K8sResourceAction.DELETE_COLLECTION,K8sResourceAction.PATCH,K8sResourceAction.UPDATE,] as const</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/types.ts:21</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="isadmin-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> is<wbr>Admin</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Admin<span class="tsd-signature-symbol">:</span> <a href="types.html#unaryobservablefunction-1" class="tsd-signature-type">UnaryObservableFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>ext<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>admin<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = pipe(map(payload &#x3D;&gt; !!get(payload, &#x27;ext.admin&#x27;)),publishRef(),)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/permission/helpers.ts:21</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="isallowed-1" class="tsd-anchor"></a>
+					<h3>is<wbr>Allowed</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Allowed&lt;T, K&gt;<span class="tsd-signature-symbol">(</span>transform<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="types.html#unaryobservablefunction-1" class="tsd-signature-type">UnaryObservableFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><a href="types.html#ifequal-1" class="tsd-signature-type">IfEqual</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">SelfSubjectAccessReview</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SelfSubjectAccessReview</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">Arrayable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SelfSubjectAccessReview</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">infer </span> R<span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/permission/helpers.ts:29</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><a href="types.html#arrayable-1" class="tsd-signature-type">Arrayable</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/types.selfsubjectaccessreview-1.html" class="tsd-signature-type">SelfSubjectAccessReview</a><span class="tsd-signature-symbol">&gt;</span></h4>
+								</li>
+								<li>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> transform: <span class="tsd-signature-type">K</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="types.html#unaryobservablefunction-1" class="tsd-signature-type">UnaryObservableFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><a href="types.html#ifequal-1" class="tsd-signature-type">IfEqual</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">SelfSubjectAccessReview</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SelfSubjectAccessReview</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">Arrayable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SelfSubjectAccessReview</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">infer </span> R<span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="permission.html">permission</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#all_actions" class="tsd-kind-icon">ALL_<wbr>ACTIONS</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#adminguardservice" class="tsd-kind-icon">Admin<wbr>Guard<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#allpermissions" class="tsd-kind-icon">All<wbr>Permissions</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#common_readable_actions" class="tsd-kind-icon">COMMON_<wbr>READABLE_<wbr>ACTIONS</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#common_writable_actions" class="tsd-kind-icon">COMMON_<wbr>WRITABLE_<wbr>ACTIONS</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#commonreadablepermissions" class="tsd-kind-icon">Common<wbr>Readable<wbr>Permissions</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#commonwritablepermissions" class="tsd-kind-icon">Common<wbr>Writable<wbr>Permissions</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8spermissionbaseparams" class="tsd-kind-icon">K8s<wbr>Permission<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8spermissionservice" class="tsd-kind-icon">K8s<wbr>Permission<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8spermissiontransformable" class="tsd-kind-icon">K8s<wbr>Permission<wbr>Transformable</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8sresourcepermissionbaseparams" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8sresourcepermissionmultiparams" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Multi<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8sresourcepermissionnoneparams" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>None<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8sresourcepermissionparams" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8sresourcepermissionsingleparams" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Single<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8sresourcepermissionwithtransformparams" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>With<wbr>Transform<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8stypepermissionactionsparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Actions<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8stypepermissionbaseparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8stypepermissionmatrixparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Matrix<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8stypepermissionmultiparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Multi<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8stypepermissionnamesparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Names<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8stypepermissionnoneparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>None<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8stypepermissionparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8stypepermissionsingleparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Single<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#k8stypepermissionwithtransformparams" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>With<wbr>Transform<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#readable_actions" class="tsd-kind-icon">READABLE_<wbr>ACTIONS</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#readablepermissions" class="tsd-kind-icon">Readable<wbr>Permissions</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#writable_actions" class="tsd-kind-icon">WRITABLE_<wbr>ACTIONS</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#writablepermissions" class="tsd-kind-icon">Writable<wbr>Permissions</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#isadmin" class="tsd-kind-icon">is<wbr>Admin</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="permission.html#isallowed" class="tsd-kind-icon">is<wbr>Allowed</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/permission.adminguardservice-1.html" class="tsd-kind-icon">Admin<wbr>Guard<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/permission.k8spermissionservice-1.html" class="tsd-kind-icon">K8s<wbr>Permission<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/permission.k8spermissionbaseparams-1.html" class="tsd-kind-icon">K8s<wbr>Permission<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/permission.k8spermissiontransformable-1.html" class="tsd-kind-icon">K8s<wbr>Permission<wbr>Transformable</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/permission.k8sresourcepermissionbaseparams-1.html" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/permission.k8sresourcepermissionmultiparams-1.html" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Multi<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/permission.k8sresourcepermissionnoneparams-1.html" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>None<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/permission.k8sresourcepermissionsingleparams-1.html" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Single<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/permission.k8stypepermissionactionsparams-1.html" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Actions<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/permission.k8stypepermissionbaseparams-1.html" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Base<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/permission.k8stypepermissionmatrixparams-1.html" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Matrix<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/permission.k8stypepermissionnamesparams-1.html" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Names<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="permission.html#allpermissions-1" class="tsd-kind-icon">All<wbr>Permissions</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="permission.html#commonreadablepermissions-1" class="tsd-kind-icon">Common<wbr>Readable<wbr>Permissions</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="permission.html#commonwritablepermissions-1" class="tsd-kind-icon">Common<wbr>Writable<wbr>Permissions</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="permission.html#k8sresourcepermissionparams-1" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="permission.html#k8sresourcepermissionwithtransformparams-1" class="tsd-kind-icon">K8s<wbr>Resource<wbr>Permission<wbr>With<wbr>Transform<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="permission.html#k8stypepermissionmultiparams-1" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Multi<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="permission.html#k8stypepermissionnoneparams-1" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>None<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="permission.html#k8stypepermissionparams-1" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="permission.html#k8stypepermissionsingleparams-1" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>Single<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="permission.html#k8stypepermissionwithtransformparams-1" class="tsd-kind-icon">K8s<wbr>Type<wbr>Permission<wbr>With<wbr>Transform<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="permission.html#readablepermissions-1" class="tsd-kind-icon">Readable<wbr>Permissions</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="permission.html#writablepermissions-1" class="tsd-kind-icon">Writable<wbr>Permissions</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="permission.html#all_actions-1" class="tsd-kind-icon">ALL_<wbr>ACTIONS</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="permission.html#common_readable_actions-1" class="tsd-kind-icon">COMMON_<wbr>READABLE_<wbr>ACTIONS</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="permission.html#common_writable_actions-1" class="tsd-kind-icon">COMMON_<wbr>WRITABLE_<wbr>ACTIONS</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="permission.html#readable_actions-1" class="tsd-kind-icon">READABLE_<wbr>ACTIONS</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="permission.html#writable_actions-1" class="tsd-kind-icon">WRITABLE_<wbr>ACTIONS</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="permission.html#isadmin-1" class="tsd-kind-icon">is<wbr>Admin</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="permission.html#isallowed-1" class="tsd-kind-icon">is<wbr>Allowed</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

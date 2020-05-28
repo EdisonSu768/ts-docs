@@ -1,0 +1,328 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>authorization | @alauda/common-snippet</title>
+	<meta name="description" content="Documentation for @alauda/common-snippet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@alauda/common-snippet</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="authorization.html">authorization</a>
+				</li>
+			</ul>
+			<h1>Module authorization</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<a href="#公共-authorization-模块" id="公共-authorization-模块" style="color: inherit; text-decoration: none;">
+							<h1>公共 Authorization 模块</h1>
+						</a>
+						<a href="#services" id="services" style="color: inherit; text-decoration: none;">
+							<h2>Services</h2>
+						</a>
+						<a href="#authorizationstateservice" id="authorizationstateservice" style="color: inherit; text-decoration: none;">
+							<h3><code>AuthorizationStateService</code></h3>
+						</a>
+						<p>身份认证状态服务，认证过程：</p>
+						<ol>
+							<li><p>通过 alauda-console 获取身份认证相关配置 (<code>TOKEN_LOGIN_API</code>)。</p>
+							</li>
+							<li><p>检查项目初始 url (需要在 Angular 应用 Bootstrap 之前调用 <code>recordInitUrl</code> 记录到 SessionStorage) 是否包含 <code>id_token</code> 或者 <code>code</code> (详情可参考 oidc 规范, <code>id_token</code>, <code>code</code> 在 url 中的名称可在项目中通过注入 <code>ID_TOKEN_KEY</code>, <code>CODE_KEY</code> 自定义). 包含的话，跳转到 6.</p>
+							</li>
+							<li><p>url 中如果包含的是 <code>id_token</code>, 跳转到 5.</p>
+							</li>
+							<li><p>url 中如果包含的是 <code>code</code>, 使用 <code>code</code> 通过 alauda-console 获取 <code>id_token</code> (<code>TOKEN_CALLBACK_API</code>).</p>
+							</li>
+							<li><p>记录 <code>id_token</code> 到 LocalStorage 的 <code>token</code> 项.</p>
+							</li>
+							<li><p>检查 LocalStorage 是否已经包含 <code>token</code>，如果不包含，转到 登录页. 否则继续流程.</p>
+							</li>
+							<li><p>赋值 <code>stateSnapshot</code>， 提供 Auth state 快照.</p>
+							</li>
+						</ol>
+						<p>服务实例方法:</p>
+						<ul>
+							<li><p><code>logout(): void</code> 登出系统, 移除 LocalStorage 中的 token 项, 并重定向回登录页.</p>
+							</li>
+							<li><p><code>redirectToLogin(): void</code> 重定向回登录页.</p>
+							</li>
+							<li><p><code>getToken(): Observable&lt;string&gt;</code> 获取 token.</p>
+							</li>
+							<li><p><code>getTokenPayload&lt;T&gt;(): T</code> 获取 token 携带的数据.</p>
+							</li>
+						</ul>
+						<a href="#authorizationinterceptorservice" id="authorizationinterceptorservice" style="color: inherit; text-decoration: none;">
+							<h3><code>AuthorizationInterceptorService</code></h3>
+						</a>
+						<p>自动给需要身份认证的 API 附加 Bearer Header，是否附加由以下条件决定。</p>
+						<ul>
+							<li><p>不是 alauda console Api (<code>MODULES_API</code>, <code>TOKEN_LOGIN_API</code>, <code>TOKEN_CALLBACK_API</code>, <code>TOKEN_INFO_API</code>)</p>
+							</li>
+							<li><p>不以 api gateway 地址开头，且已经包含 Authorization Header.</p>
+							</li>
+							<li><p>不在匿名 Api 声明中，(<code>ANONYMOUS_APIS</code>).</p>
+							</li>
+						</ul>
+						<p><strong>因 Angular Interceptor 需要保持合理的顺序才能工作, 需要自行在项目中提供默认实现或自定义实现。</strong></p>
+						<a href="#authorizationguardservice" id="authorizationguardservice" style="color: inherit; text-decoration: none;">
+							<h3><code>AuthorizationGuardService</code></h3>
+						</a>
+						<p>路由守卫，如果路由需要身份认证，则阻塞直到认证通过.</p>
+						<a href="#recordiniturl-void" id="recordiniturl-void" style="color: inherit; text-decoration: none;">
+							<h3><code>recordInitUrl(): void</code></h3>
+						</a>
+						<p>记录项目初始 url 到 SessionStorage, 避免 Angular 路由接管后, url 会被修改.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>References</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="authorization.html#authorizationguardservice" class="tsd-kind-icon">Authorization<wbr>Guard<wbr>Service</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="authorization.html#authorizationinterceptorservice" class="tsd-kind-icon">Authorization<wbr>Interceptor<wbr>Service</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="authorization.html#authorizationstate" class="tsd-kind-icon">Authorization<wbr>State</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="authorization.html#authorizationstateservice" class="tsd-kind-icon">Authorization<wbr>State<wbr>Service</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="authorization.html#recordiniturl" class="tsd-kind-icon">record<wbr>Init<wbr>Url</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/authorization.authorizationguardservice-1.html" class="tsd-kind-icon">Authorization<wbr>Guard<wbr>Service</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/authorization.authorizationinterceptorservice-1.html" class="tsd-kind-icon">Authorization<wbr>Interceptor<wbr>Service</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/authorization.authorizationstateservice-1.html" class="tsd-kind-icon">Authorization<wbr>State<wbr>Service</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/authorization.authorizationstate-1.html" class="tsd-kind-icon">Authorization<wbr>State</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="authorization.html#parseparams" class="tsd-kind-icon">parse<wbr>Params</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="authorization.html#recordiniturl-1" class="tsd-kind-icon">record<wbr>Init<wbr>Url</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>References</h2>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="authorizationguardservice" class="tsd-anchor"></a>
+					<h3>Authorization<wbr>Guard<wbr>Service</h3>
+					Re-exports <a href="../classes/authorization.authorizationguardservice-1.html">AuthorizationGuardService</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="authorizationinterceptorservice" class="tsd-anchor"></a>
+					<h3>Authorization<wbr>Interceptor<wbr>Service</h3>
+					Re-exports <a href="../classes/authorization.authorizationinterceptorservice-1.html">AuthorizationInterceptorService</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="authorizationstate" class="tsd-anchor"></a>
+					<h3>Authorization<wbr>State</h3>
+					Re-exports <a href="../interfaces/authorization.authorizationstate-1.html">AuthorizationState</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="authorizationstateservice" class="tsd-anchor"></a>
+					<h3>Authorization<wbr>State<wbr>Service</h3>
+					Re-exports <a href="../classes/authorization.authorizationstateservice-1.html">AuthorizationStateService</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="recordiniturl" class="tsd-anchor"></a>
+					<h3>record<wbr>Init<wbr>Url</h3>
+					Re-exports <a href="authorization.html#recordiniturl-1">recordInitUrl</a>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="parseparams" class="tsd-anchor"></a>
+					<h3>parse<wbr>Params</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Params<span class="tsd-signature-symbol">(</span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="types.html#stringmap-1" class="tsd-signature-type">StringMap</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/authorization/state.service.ts:260</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>query: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="types.html#stringmap-1" class="tsd-signature-type">StringMap</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="recordiniturl-1" class="tsd-anchor"></a>
+					<h3>record<wbr>Init<wbr>Url</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">record<wbr>Init<wbr>Url<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/authorization/record-init-url.ts:6</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="authorization.html">authorization</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="authorization.html#authorizationguardservice" class="tsd-kind-icon">Authorization<wbr>Guard<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="authorization.html#authorizationinterceptorservice" class="tsd-kind-icon">Authorization<wbr>Interceptor<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="authorization.html#authorizationstate" class="tsd-kind-icon">Authorization<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="authorization.html#authorizationstateservice" class="tsd-kind-icon">Authorization<wbr>State<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="authorization.html#recordiniturl" class="tsd-kind-icon">record<wbr>Init<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/authorization.authorizationguardservice-1.html" class="tsd-kind-icon">Authorization<wbr>Guard<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/authorization.authorizationinterceptorservice-1.html" class="tsd-kind-icon">Authorization<wbr>Interceptor<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/authorization.authorizationstateservice-1.html" class="tsd-kind-icon">Authorization<wbr>State<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/authorization.authorizationstate-1.html" class="tsd-kind-icon">Authorization<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="authorization.html#parseparams" class="tsd-kind-icon">parse<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="authorization.html#recordiniturl-1" class="tsd-kind-icon">record<wbr>Init<wbr>Url</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

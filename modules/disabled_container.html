@@ -1,0 +1,245 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>disabled-container | @alauda/common-snippet</title>
+	<meta name="description" content="Documentation for @alauda/common-snippet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@alauda/common-snippet</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="disabled_container.html">disabled-container</a>
+				</li>
+			</ul>
+			<h1>Module disabled-container</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<a href="#acl-disabled-container" id="acl-disabled-container" style="color: inherit; text-decoration: none;">
+							<h1>acl-disabled-container</h1>
+						</a>
+						<a href="#组件意义" id="组件意义" style="color: inherit; text-decoration: none;">
+							<h2>组件意义</h2>
+						</a>
+						<p>解决 button 在 disabled 时 tooltip 无法生效的问题。</p>
+						<a href="#输入参数" id="输入参数" style="color: inherit; text-decoration: none;">
+							<h2>输入参数</h2>
+						</a>
+						<a href="#tooltip" id="tooltip" style="color: inherit; text-decoration: none;">
+							<h3>tooltip</h3>
+						</a>
+						<p>自定义 tooltip 文案，默认为空</p>
+						<a href="#tooltipposition" id="tooltipposition" style="color: inherit; text-decoration: none;">
+							<h3>tooltipPosition</h3>
+						</a>
+						<p>tooltip 的位置参数，透传至 auiTooltipPosition</p>
+						<a href="#isallowed" id="isallowed" style="color: inherit; text-decoration: none;">
+							<h3>isAllowed</h3>
+						</a>
+						<p>权限控制参数，默认为 false，false 时组件的 tooltip 为 &#39;无权限，请联系管理员&#39;</p>
+						<a href="#isdisabled" id="isdisabled" style="color: inherit; text-decoration: none;">
+							<h3>isDisabled</h3>
+						</a>
+						<p>条件控制参数，默认为 false</p>
+						<a href="#本组件处理规则" id="本组件处理规则" style="color: inherit; text-decoration: none;">
+							<h2>本组件处理规则</h2>
+						</a>
+						<p>isAllowed 为 true，isDisabled 为 false，tooltip 为 any， 组件正常显示</p>
+						<p>isAllowed 为 true，isDisabled 为 true，tooltip 为 any， 组件 tooltip 显示为 传入的 tooltip 的值</p>
+						<p>isAllowed 为 false，isDisabled 为 any，tooltip 为 any， 组件 tooltip 显示为 &#39;无权限，请联系管理员&#39;</p>
+						<p>总之：优先判断 isAllowed，若 isAllowed 为 false，则显示&#39;无权限，请联系管理员&#39;</p>
+						<a href="#使用-demo" id="使用-demo" style="color: inherit; text-decoration: none;">
+							<h2>使用 Demo</h2>
+						</a>
+						<pre><code class="language-html"><span class="hljs-comment">&lt;!-- template.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">acl-disabled-container</span> [<span class="hljs-attr">isAllowed</span>]=<span class="hljs-string">"creatable$ | async"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">aui-button</span>=<span class="hljs-string">"primary"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"create()"</span>&gt;</span>
+    {{ 'create' | translate }}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">acl-disabled-container</span>&gt;</span></code></pre>
+						<pre><code class="language-html"><span class="hljs-comment">&lt;!-- template.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">acl-disabled-container</span>
+  [<span class="hljs-attr">isAllowed</span>]=<span class="hljs-string">"creatable$ | async"</span>
+  [<span class="hljs-attr">isDisabled</span>]=<span class="hljs-string">"condition"</span>
+  [<span class="hljs-attr">tooltip</span>]=<span class="hljs-string">"'custom-tooltip'"</span>
+&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">aui-button</span>=<span class="hljs-string">"primary"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"create()"</span>&gt;</span>
+    {{ 'create' | translate }}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">acl-disabled-container</span>&gt;</span></code></pre>
+						<pre><code class="language-html"><span class="hljs-comment">&lt;!-- template.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">aui-menu</span> #<span class="hljs-attr">menu</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">acl-disabled-container</span>
+    [<span class="hljs-attr">isAllowed</span>]=<span class="hljs-string">"updated$ | async"</span>
+    <span class="hljs-attr">tooltipPosition</span>=<span class="hljs-string">"start"</span>
+  &gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">aui-menu-item</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"update()"</span>&gt;</span>
+      {{ 'update' | translate }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">aui-menu-item</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">acl-disabled-container</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">acl-disabled-container</span>
+    [<span class="hljs-attr">isAllowed</span>]=<span class="hljs-string">"deleted$ | async"</span>
+    <span class="hljs-attr">tooltipPosition</span>=<span class="hljs-string">"start"</span>
+  &gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">aui-menu-item</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"delete()"</span>&gt;</span>
+      {{ 'delete' | translate }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">aui-menu-item</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">acl-disabled-container</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">aui-menu</span>&gt;</span></code></pre>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>References</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="disabled_container.html#disabledcontainercomponent" class="tsd-kind-icon">Disabled<wbr>Container<wbr>Component</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="disabled_container.html#disabledcontainermodule" class="tsd-kind-icon">Disabled<wbr>Container<wbr>Module</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/disabled_container.disabledcontainercomponent-1.html" class="tsd-kind-icon">Disabled<wbr>Container<wbr>Component</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/disabled_container.disabledcontainermodule-1.html" class="tsd-kind-icon">Disabled<wbr>Container<wbr>Module</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>References</h2>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="disabledcontainercomponent" class="tsd-anchor"></a>
+					<h3>Disabled<wbr>Container<wbr>Component</h3>
+					Re-exports <a href="../classes/disabled_container.disabledcontainercomponent-1.html">DisabledContainerComponent</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="disabledcontainermodule" class="tsd-anchor"></a>
+					<h3>Disabled<wbr>Container<wbr>Module</h3>
+					Re-exports <a href="../classes/disabled_container.disabledcontainermodule-1.html">DisabledContainerModule</a>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="disabled_container.html">disabled-<wbr>container</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="disabled_container.html#disabledcontainercomponent" class="tsd-kind-icon">Disabled<wbr>Container<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="disabled_container.html#disabledcontainermodule" class="tsd-kind-icon">Disabled<wbr>Container<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/disabled_container.disabledcontainercomponent-1.html" class="tsd-kind-icon">Disabled<wbr>Container<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/disabled_container.disabledcontainermodule-1.html" class="tsd-kind-icon">Disabled<wbr>Container<wbr>Module</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

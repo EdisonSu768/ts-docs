@@ -1,0 +1,753 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>k8s-resource-list | @alauda/common-snippet</title>
+	<meta name="description" content="Documentation for @alauda/common-snippet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@alauda/common-snippet</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="k8s_resource_list.html">k8s-resource-list</a>
+				</li>
+			</ul>
+			<h1>Module k8s-resource-list</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<a href="#k8sresourcelist" id="k8sresourcelist" style="color: inherit; text-decoration: none;">
+							<h1>K8SResourceList</h1>
+						</a>
+						<a href="#k8sresourcelist-1" id="k8sresourcelist-1" style="color: inherit; text-decoration: none;">
+							<h2>K8SResourceList</h2>
+						</a>
+						<a href="#配置" id="配置" style="color: inherit; text-decoration: none;">
+							<h3>配置</h3>
+						</a>
+						<table>
+							<thead>
+								<tr>
+									<th>名称</th>
+									<th>类型</th>
+									<th>必填</th>
+									<th>说明</th>
+								</tr>
+							</thead>
+							<tbody><tr>
+									<td>fetcher</td>
+									<td>function</td>
+									<td>✔︎</td>
+									<td>接受参数并返回 API 数据的函数，刷新数据或继续加载时调用</td>
+								</tr>
+								<tr>
+									<td>activatedRoute</td>
+									<td>ActivatedRoute</td>
+									<td>✘</td>
+									<td>如果 fetcher 不需要特殊参数且参数都在 URL query 字段中可以传入此项</td>
+								</tr>
+								<tr>
+									<td>fetchParams$</td>
+									<td>Observable<any></td>
+									<td>✘</td>
+									<td>fetcher 所需参数</td>
+								</tr>
+						</tbody></table>
+						<a href="#接口" id="接口" style="color: inherit; text-decoration: none;">
+							<h3>接口</h3>
+						</a>
+						<table>
+							<thead>
+								<tr>
+									<th>名称</th>
+									<th>类型</th>
+									<th>说明</th>
+								</tr>
+							</thead>
+							<tbody><tr>
+									<td>reload</td>
+									<td>function</td>
+									<td>重新加载列表</td>
+								</tr>
+								<tr>
+									<td>loadMore</td>
+									<td>function</td>
+									<td>继续加载</td>
+								</tr>
+								<tr>
+									<td>scanItems</td>
+									<td>function</td>
+									<td>接受一个函数作为参数，并用此函数处理整个列表</td>
+								</tr>
+								<tr>
+									<td>create</td>
+									<td>function</td>
+									<td>接受一个资源数据作为参数，并添加到列表顶部</td>
+								</tr>
+								<tr>
+									<td>update</td>
+									<td>function</td>
+									<td>接受一个资源数据作为参数，并替换相同列表中相同名称的资源</td>
+								</tr>
+								<tr>
+									<td>delete</td>
+									<td>function</td>
+									<td>接受一个资源数据作为参数，并删除列表中相同名称的资源</td>
+								</tr>
+								<tr>
+									<td>rawResponse$</td>
+									<td>Observable<KubernetesResourceList></td>
+									<td>当次请求返回的数据</td>
+								</tr>
+								<tr>
+									<td>loading$</td>
+									<td>Observable<boolean></td>
+									<td>加载状态</td>
+								</tr>
+								<tr>
+									<td>loadingError$</td>
+									<td>Observable&lt;HttpErrorResponse | Status&gt;</td>
+									<td>错误状态</td>
+								</tr>
+								<tr>
+									<td>hasMore$</td>
+									<td>Observable<boolean></td>
+									<td>是否还有更多数据</td>
+								</tr>
+								<tr>
+									<td>items$</td>
+									<td>items$: Observable&lt;KubernetesResource[]&gt;</td>
+									<td>当前加载的数据数组</td>
+								</tr>
+						</tbody></table>
+						<a href="#k8sresourcelistfooter" id="k8sresourcelistfooter" style="color: inherit; text-decoration: none;">
+							<h2>K8SResourceListFooter</h2>
+						</a>
+						<a href="#input" id="input" style="color: inherit; text-decoration: none;">
+							<h3>Input</h3>
+						</a>
+						<table>
+							<thead>
+								<tr>
+									<th>名称</th>
+									<th>类型</th>
+									<th>默认值</th>
+									<th>说明</th>
+								</tr>
+							</thead>
+							<tbody><tr>
+									<td>list</td>
+									<td>K8SResourceList</td>
+									<td>-</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>autoLoad</td>
+									<td>boolean</td>
+									<td>true</td>
+									<td>滚动时是否自动加载</td>
+								</tr>
+								<tr>
+									<td>backTop</td>
+									<td>boolean</td>
+									<td>true</td>
+									<td>滚动后是否显示「返回顶部」按钮</td>
+								</tr>
+								<tr>
+									<td>bottomDistance</td>
+									<td>number</td>
+									<td>60</td>
+									<td>距页面底部多少像素时开始加载剩余数据</td>
+								</tr>
+						</tbody></table>
+						<a href="#工具函数" id="工具函数" style="color: inherit; text-decoration: none;">
+							<h2>工具函数</h2>
+						</a>
+						<table>
+							<thead>
+								<tr>
+									<th>名称</th>
+									<th>说明</th>
+								</tr>
+							</thead>
+							<tbody><tr>
+									<td>matchLabelsToString</td>
+									<td>将 matchLabels 对象转换为字符串</td>
+								</tr>
+								<tr>
+									<td>stringToMatchLabels</td>
+									<td>将字符串转换为 matchLabels 对象</td>
+								</tr>
+								<tr>
+									<td>matchExpressionsToString</td>
+									<td>将 <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api">matchExpressions</a> 转换为字符串</td>
+								</tr>
+						</tbody></table>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>References</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#configwithparams" class="tsd-kind-icon">Config<wbr>With<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#configwithroute" class="tsd-kind-icon">Config<wbr>With<wbr>Route</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#insertfn" class="tsd-kind-icon">Insert<wbr>Fn</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#itemsscanner" class="tsd-kind-icon">Items<wbr>Scanner</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#k8sresourcelist" class="tsd-kind-icon">K8SResource<wbr>List</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#k8sresourcelistfootercomponent" class="tsd-kind-icon">K8SResource<wbr>List<wbr>Footer<wbr>Component</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#k8sresourcelistmodule" class="tsd-kind-icon">K8SResource<wbr>List<wbr>Module</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#loadaction" class="tsd-kind-icon">Load<wbr>Action</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#watcher" class="tsd-kind-icon">Watcher</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#watcherparams" class="tsd-kind-icon">Watcher<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#matchexpressionstostring" class="tsd-kind-icon">match<wbr>Expressions<wbr>ToString</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#matchlabelstostring" class="tsd-kind-icon">match<wbr>Labels<wbr>ToString</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#normalizeparams" class="tsd-kind-icon">normalize<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="k8s_resource_list.html#stringtomatchlabels" class="tsd-kind-icon">string<wbr>ToMatch<wbr>Labels</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Enumerations</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/k8s_resource_list.loadaction-1.html" class="tsd-kind-icon">Load<wbr>Action</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/k8s_resource_list.k8sresourcelist-1.html" class="tsd-kind-icon">K8SResource<wbr>List</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/k8s_resource_list.k8sresourcelistfootercomponent-1.html" class="tsd-kind-icon">K8SResource<wbr>List<wbr>Footer<wbr>Component</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/k8s_resource_list.k8sresourcelistmodule-1.html" class="tsd-kind-icon">K8SResource<wbr>List<wbr>Module</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported"><a href="../interfaces/k8s_resource_list.baseconfig.html" class="tsd-kind-icon">Base<wbr>Config</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/k8s_resource_list.configwithparams-1.html" class="tsd-kind-icon">Config<wbr>With<wbr>Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/k8s_resource_list.configwithroute-1.html" class="tsd-kind-icon">Config<wbr>With<wbr>Route</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter"><a href="../interfaces/k8s_resource_list.watcherparams-1.html" class="tsd-kind-icon">Watcher<wbr>Params</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="k8s_resource_list.html#insertfn-1" class="tsd-kind-icon">Insert<wbr>Fn</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="k8s_resource_list.html#itemsscanner-1" class="tsd-kind-icon">Items<wbr>Scanner</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="k8s_resource_list.html#watcher-1" class="tsd-kind-icon">Watcher</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="k8s_resource_list.html#matchexpressionstostring-1" class="tsd-kind-icon">match<wbr>Expressions<wbr>ToString</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="k8s_resource_list.html#matchlabelstostring-1" class="tsd-kind-icon">match<wbr>Labels<wbr>ToString</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="k8s_resource_list.html#normalizeparams-1" class="tsd-kind-icon">normalize<wbr>Params</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="k8s_resource_list.html#stringtomatchlabels-1" class="tsd-kind-icon">string<wbr>ToMatch<wbr>Labels</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>References</h2>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="configwithparams" class="tsd-anchor"></a>
+					<h3>Config<wbr>With<wbr>Params</h3>
+					Re-exports <a href="../interfaces/k8s_resource_list.configwithparams-1.html">ConfigWithParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="configwithroute" class="tsd-anchor"></a>
+					<h3>Config<wbr>With<wbr>Route</h3>
+					Re-exports <a href="../interfaces/k8s_resource_list.configwithroute-1.html">ConfigWithRoute</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="insertfn" class="tsd-anchor"></a>
+					<h3>Insert<wbr>Fn</h3>
+					Re-exports <a href="k8s_resource_list.html#insertfn-1">InsertFn</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="itemsscanner" class="tsd-anchor"></a>
+					<h3>Items<wbr>Scanner</h3>
+					Re-exports <a href="k8s_resource_list.html#itemsscanner-1">ItemsScanner</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8sresourcelist" class="tsd-anchor"></a>
+					<h3>K8SResource<wbr>List</h3>
+					Re-exports <a href="../classes/k8s_resource_list.k8sresourcelist-1.html">K8SResourceList</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8sresourcelistfootercomponent" class="tsd-anchor"></a>
+					<h3>K8SResource<wbr>List<wbr>Footer<wbr>Component</h3>
+					Re-exports <a href="../classes/k8s_resource_list.k8sresourcelistfootercomponent-1.html">K8SResourceListFooterComponent</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="k8sresourcelistmodule" class="tsd-anchor"></a>
+					<h3>K8SResource<wbr>List<wbr>Module</h3>
+					Re-exports <a href="../classes/k8s_resource_list.k8sresourcelistmodule-1.html">K8SResourceListModule</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="loadaction" class="tsd-anchor"></a>
+					<h3>Load<wbr>Action</h3>
+					Re-exports <a href="../enums/k8s_resource_list.loadaction-1.html">LoadAction</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="watcher" class="tsd-anchor"></a>
+					<h3>Watcher</h3>
+					Re-exports <a href="k8s_resource_list.html#watcher-1">Watcher</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="watcherparams" class="tsd-anchor"></a>
+					<h3>Watcher<wbr>Params</h3>
+					Re-exports <a href="../interfaces/k8s_resource_list.watcherparams-1.html">WatcherParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="matchexpressionstostring" class="tsd-anchor"></a>
+					<h3>match<wbr>Expressions<wbr>ToString</h3>
+					Re-exports <a href="k8s_resource_list.html#matchexpressionstostring-1">matchExpressionsToString</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="matchlabelstostring" class="tsd-anchor"></a>
+					<h3>match<wbr>Labels<wbr>ToString</h3>
+					Re-exports <a href="k8s_resource_list.html#matchlabelstostring-1">matchLabelsToString</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="normalizeparams" class="tsd-anchor"></a>
+					<h3>normalize<wbr>Params</h3>
+					Re-exports <a href="k8s_resource_list.html#normalizeparams-1">normalizeParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="stringtomatchlabels" class="tsd-anchor"></a>
+					<h3>string<wbr>ToMatch<wbr>Labels</h3>
+					Re-exports <a href="k8s_resource_list.html#stringtomatchlabels-1">stringToMatchLabels</a>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="insertfn-1" class="tsd-anchor"></a>
+					<h3>Insert<wbr>Fn</h3>
+					<div class="tsd-signature tsd-kind-icon">Insert<wbr>Fn&lt;R&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>items<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span>, res<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span>, hasMore<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/k8s-resource-list/types.ts:18</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>R</h4>
+						</li>
+					</ul>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>items<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span>, res<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span>, hasMore<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>items: <span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span></h5>
+											</li>
+											<li>
+												<h5>res: <span class="tsd-signature-type">R</span></h5>
+											</li>
+											<li>
+												<h5>hasMore: <span class="tsd-signature-type">boolean</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="itemsscanner-1" class="tsd-anchor"></a>
+					<h3>Items<wbr>Scanner</h3>
+					<div class="tsd-signature tsd-kind-icon">Items<wbr>Scanner&lt;R&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>items<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/k8s-resource-list/types.ts:33</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>R</h4>
+						</li>
+					</ul>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>items<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>items: <span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">[]</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="watcher-1" class="tsd-anchor"></a>
+					<h3>Watcher</h3>
+					<div class="tsd-signature tsd-kind-icon">Watcher&lt;R&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>seedVersion<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/api.watchapiresponse-1.html" class="tsd-signature-type">WatchAPIResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/alauda-common-lib/src/k8s-resource-list/types.ts:15</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>R<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.kubernetesresource-1.html" class="tsd-signature-type">KubernetesResource</a></h4>
+						</li>
+					</ul>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>seedVersion<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/api.watchapiresponse-1.html" class="tsd-signature-type">WatchAPIResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>seedVersion: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/api.watchapiresponse-1.html" class="tsd-signature-type">WatchAPIResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="matchexpressionstostring-1" class="tsd-anchor"></a>
+					<h3>match<wbr>Expressions<wbr>ToString</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">match<wbr>Expressions<wbr>ToString<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.labelselectorrequirement-1.html" class="tsd-signature-type">LabelSelectorRequirement</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/k8s-resource-list/utils.ts:37</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>params: <a href="../interfaces/types.labelselectorrequirement-1.html" class="tsd-signature-type">LabelSelectorRequirement</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="matchlabelstostring-1" class="tsd-anchor"></a>
+					<h3>match<wbr>Labels<wbr>ToString</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">match<wbr>Labels<wbr>ToString<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">?: </span><a href="types.html#stringmap-1" class="tsd-signature-type">StringMap</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/k8s-resource-list/utils.ts:13</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>convert selector.matchLabels to string
+									refers to: <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api">https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> params: <a href="types.html#stringmap-1" class="tsd-signature-type">StringMap</a><span class="tsd-signature-symbol"> = {}</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="normalizeparams-1" class="tsd-anchor"></a>
+					<h3>normalize<wbr>Params</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">normalize<wbr>Params&lt;P&gt;<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">P</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/k8s-resource-list/utils.ts:62</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>P</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>params: <span class="tsd-signature-type">P</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">P</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="stringtomatchlabels-1" class="tsd-anchor"></a>
+					<h3>string<wbr>ToMatch<wbr>Labels</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">string<wbr>ToMatch<wbr>Labels<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/alauda-common-lib/src/k8s-resource-list/utils.ts:23</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>convert string to selector.matchLabels</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> str: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="k8s_resource_list.html">k8s-<wbr>resource-<wbr>list</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#configwithparams" class="tsd-kind-icon">Config<wbr>With<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#configwithroute" class="tsd-kind-icon">Config<wbr>With<wbr>Route</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#insertfn" class="tsd-kind-icon">Insert<wbr>Fn</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#itemsscanner" class="tsd-kind-icon">Items<wbr>Scanner</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#k8sresourcelist" class="tsd-kind-icon">K8SResource<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#k8sresourcelistfootercomponent" class="tsd-kind-icon">K8SResource<wbr>List<wbr>Footer<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#k8sresourcelistmodule" class="tsd-kind-icon">K8SResource<wbr>List<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#loadaction" class="tsd-kind-icon">Load<wbr>Action</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#watcher" class="tsd-kind-icon">Watcher</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#watcherparams" class="tsd-kind-icon">Watcher<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#matchexpressionstostring" class="tsd-kind-icon">match<wbr>Expressions<wbr>ToString</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#matchlabelstostring" class="tsd-kind-icon">match<wbr>Labels<wbr>ToString</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#normalizeparams" class="tsd-kind-icon">normalize<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#stringtomatchlabels" class="tsd-kind-icon">string<wbr>ToMatch<wbr>Labels</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="../enums/k8s_resource_list.loadaction-1.html" class="tsd-kind-icon">Load<wbr>Action</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../classes/k8s_resource_list.k8sresourcelist-1.html" class="tsd-kind-icon">K8SResource<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/k8s_resource_list.k8sresourcelistfootercomponent-1.html" class="tsd-kind-icon">K8SResource<wbr>List<wbr>Footer<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/k8s_resource_list.k8sresourcelistmodule-1.html" class="tsd-kind-icon">K8SResource<wbr>List<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../interfaces/k8s_resource_list.baseconfig.html" class="tsd-kind-icon">Base<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/k8s_resource_list.configwithparams-1.html" class="tsd-kind-icon">Config<wbr>With<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/k8s_resource_list.configwithroute-1.html" class="tsd-kind-icon">Config<wbr>With<wbr>Route</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/k8s_resource_list.watcherparams-1.html" class="tsd-kind-icon">Watcher<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="k8s_resource_list.html#insertfn-1" class="tsd-kind-icon">Insert<wbr>Fn</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="k8s_resource_list.html#itemsscanner-1" class="tsd-kind-icon">Items<wbr>Scanner</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="k8s_resource_list.html#watcher-1" class="tsd-kind-icon">Watcher</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#matchexpressionstostring-1" class="tsd-kind-icon">match<wbr>Expressions<wbr>ToString</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#matchlabelstostring-1" class="tsd-kind-icon">match<wbr>Labels<wbr>ToString</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="k8s_resource_list.html#normalizeparams-1" class="tsd-kind-icon">normalize<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="k8s_resource_list.html#stringtomatchlabels-1" class="tsd-kind-icon">string<wbr>ToMatch<wbr>Labels</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
